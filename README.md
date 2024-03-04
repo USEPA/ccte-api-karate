@@ -8,7 +8,7 @@
 <h1 align="center">Computational Toxicology and Exposure Data APIs</h1>
 <h3 align="center">Performance Testing with Karate Framework</h3>
 </div>
-<br><br>  
+<br>
 Karate framework follows the Cucumber style of writing the program which follows the BDD approach. The syntax is easy to understand by non-programmers. And this framework is the only API testing tool that has combined API Automation and performance testing into a single standalone tool.
 <br><br>
 We will be using Karate to perform Smoke, Regression, CORS, and Security tests on the CCTE APIs. Both Smoke and Regression tests are labeled with the appropriate Tags. CORS and Security are referenced by directory.
