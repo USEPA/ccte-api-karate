@@ -1,6 +1,6 @@
 @ignore
 @regression
-Feature: Feature file for monitoring the chemical list batch search resource
+Feature: Feature file to see if the dtxsids of a  GET requested chemical list could be POSTed directly into another endpoint
 
   Background:
     * url ccte
@@ -16,7 +16,7 @@ Feature: Feature file for monitoring the chemical list batch search resource
     And def data = response.dtxsids
 
     # Inserting DTXSIDs from the chemical list search feature into the chemical detail batch resource (projection = chemicaldetailstandard)
-    Given url 'https://api-ccte.epa.gov/chemical/detail/search/by-dtxsid/'
+    Given url ccte + "/chemical/detail/search/by-dtxsid/"
     And header x-api-key = apikey 
     And param projection = 'ccdchemicaldetail'
     And request data

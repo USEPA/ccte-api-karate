@@ -13,7 +13,7 @@ Feature: Feature file for chemical ghslink resource. Finding chemical safety dat
     Then status 200
 
   Scenario: Testing the POST method for chemicals by listname
-    Given url "https://api-ccte-stg.epa.gov/chemical/ghslink/to-dtxsid/"
+    Given url ccte + "/chemical/ghslink/to-dtxsid/"
     And request '["DTXSID90632430", "DTXSID001000314", "DTXSID001000326"]'
     When method POST
     Then status 200

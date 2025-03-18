@@ -15,14 +15,14 @@ Feature: Feature file for validating the responses of the chemical search resour
     And match response == ["DTXSID10723733", "DTXSID10809066", "DTXSID50381997", "DTXSID50382005", "DTXSID9021681"]
 
   Scenario: Validate response for the POST method of ms-ready chemical using mass range (json)
-    Given url "https://api-ccte.epa.gov/chemical/msready/search/by-mass/"
+    Given url ccte + "/chemical/msready/search/by-mass/"
     And request {masses: [11.2, 33.1]}
     When method POST
     Then status 400
     And match response == {"type": "about:blank", "title": "Constraint Violations", "status": 400, "instance": "/chemical/msready/search/by-mass/", "violations": {"error": "error value couldn't be null"}}
 
   Scenario: Validate response for the POST method of ms-ready chemical using mass range (missing error)
-    Given url "https://api-ccte.epa.gov/chemical/msready/search/by-mass/"
+    Given url ccte + "/chemical/msready/search/by-mass/"
     And header Content-Type = 'application/problem+json; charset=utf-8'
     And request {masses: [12, 16.1], error: 2}
     When method POST
@@ -30,7 +30,7 @@ Feature: Feature file for validating the responses of the chemical search resour
     And match response == {12.0: ["DTXSID10846370", "DTXSID90166624", "DTXSID9027651"], 16.1: []}
 
   Scenario: Validate response for the POST method of ms-ready chemical using mass range (missing error)
-    Given url "https://api-ccte.epa.gov/chemical/msready/search/by-mass/"
+    Given url ccte + "/chemical/msready/search/by-mass/"
     And header Content-Type = 'application/problem+json; charset=utf-8'
     And request {error: '1'}
     When method POST

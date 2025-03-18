@@ -15,7 +15,7 @@ Feature: Feature file for validating the responses of the cancer summary resourc
     And match response[0] == {id: '#present', source: '#present', url: '#present', cancerCall: '#present', dtxsid: '#present', exposureRoute: '#present'}
 
   Scenario: Testing the POST method for cancer summary data by batch dtxsid
-    Given url "https://api-ccte.epa.gov/hazard/cancer-summary/search/by-dtxsid/"
+    Given url ccte + "/hazard/cancer-summary/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200

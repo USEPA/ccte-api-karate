@@ -13,7 +13,7 @@ Feature: Feature file for chemical wikipedia resource
     Then status 200
 
   Scenario: Testing the POST method for chemical safety data from wikipedia by batch dtxsid
-    Given url "https://api-ccte.epa.gov/chemical/wikipedia/by-dtxsid/"
+    Given url ccte + "/chemical/wikipedia/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200

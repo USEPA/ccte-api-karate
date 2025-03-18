@@ -15,7 +15,7 @@ Feature: Feature file for validating the responses of the skin eye resource
     And match response[0] == {id: '#present', year: '#present', source: '#present', dtxsid: '#present', endpoint: '#present', classification: '#present', guideline: '#present', reliability: '#present', resultText: '#present', score: '#present', species: '#present', studyType: '#present', strain: '#present'}
 
   Scenario: Testing the POST method for skin eye data by batch dtxsid
-    Given url "https://api-ccte.epa.gov/hazard/skin-eye/search/by-dtxsid/"
+    Given url ccte + "/hazard/skin-eye/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200

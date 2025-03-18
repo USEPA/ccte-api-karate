@@ -18,7 +18,7 @@ Feature: Feature file for exposure list-presence resource
     Then status 200 
 
   Scenario: Testing the POST method for list presence by dtxsids
-    Given url "https://api-ccte.epa.gov/exposure/list-presence/search/by-dtxsid/"
+    Given url ccte + "/exposure/list-presence/search/by-dtxsid/"
     And request ["DTXSID7020182","DTXSID9020112"]
     When method POST
     Then status 200

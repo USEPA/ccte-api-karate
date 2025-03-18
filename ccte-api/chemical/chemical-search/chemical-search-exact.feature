@@ -33,7 +33,7 @@ Feature: Feature file for chemical search resource (exact value)
     Then status 200
 
   Scenario: Testing the POST method for search exact match by batch
-    Given url "https://api-ccte.epa.gov/chemical/search/equal/"
+    Given url ccte + "/chemical/search/equal/"
     And request 'DTXSID7020182\nEPAPLT0232A03\natrazine\n1912-24-9\n194615'
     When method POST
     Then status 200

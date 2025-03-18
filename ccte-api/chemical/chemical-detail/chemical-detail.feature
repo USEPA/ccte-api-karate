@@ -13,7 +13,7 @@ Feature: Feature file for chemical details resource
     Then status 200
 
   Scenario: Testing the POST method for chemical details by batch dtxsid
-    Given url "https://api-ccte.epa.gov/chemical/detail/search/by-dtxsid/"
+    Given url ccte + "/chemical/detail/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
@@ -24,7 +24,7 @@ Feature: Feature file for chemical details resource
     Then status 200
 
   Scenario: Testing the POST method for chemical details by batch dtxcid
-    Given url "https://api-ccte.epa.gov/chemical/detail/search/by-dtxcid/"
+    Given url ccte + "/chemical/detail/search/by-dtxcid/"
     And request batchdtxcid
     When method POST
     Then status 200

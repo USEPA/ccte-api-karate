@@ -30,7 +30,7 @@ Feature: Feature file for chemical list resource with projection chemicallistnam
     And match response[0] == {listName: '#present'}
 
   Scenario: Validating the response of the GET method for all public lists (projection = chemicallistname)
-    Given url "https://api-ccte.epa.gov/chemical/list/"
+    Given url ccte + "/chemical/list/"
     And param projection = 'chemicallistname'
     When method GET
     Then status 200

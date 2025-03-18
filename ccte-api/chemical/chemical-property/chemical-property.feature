@@ -18,7 +18,7 @@ Feature: Feature file for chemical property resource
     Then status 200
 
   Scenario: Testing the POST method for chemical properties by batch dtxsid
-    Given url "https://api-ccte.epa.gov/chemical/property/search/by-dtxsid/"
+    Given url ccte + "/chemical/property/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200

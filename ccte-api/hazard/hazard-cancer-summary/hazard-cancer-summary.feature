@@ -13,7 +13,7 @@ Feature: Feature file for cancer summary resource
     Then status 200
 
   Scenario: Testing the POST method for cancer summary data by batch dtxsid
-    Given url "https://api-ccte.epa.gov/hazard/cancer-summary/search/by-dtxsid/"
+    Given url ccte + "/hazard/cancer-summary/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200

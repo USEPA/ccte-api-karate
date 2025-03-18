@@ -7,7 +7,7 @@ Feature: Feature file for hazard toxref data endpoints
     * header x-api-key = apikey
 
   Scenario: Testing the GET method for toxref data by batch dtxsids
-    Given url "https://api-ccte.epa.gov/hazard/toxref/search/by-dtxsid/"
+    Given url ccte + "/hazard/toxref/search/by-dtxsid/"
     And request ["DTXSID5034307","DTXSID2040363"]
     When method POST
     Then status 200

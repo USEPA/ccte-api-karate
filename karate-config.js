@@ -2,11 +2,12 @@ function() {
     var env = karate.env.split("|")[0]; // get java system property from karate.env 'env'
     var key = karate.env.split("|")[1]; // get karate config property from karate.env 'key'
     var fake = karate.env.split("|")[2]; // get karate.config property from karate.env 'fake'
+    var ctx-local-dev.env.split("|")[3]; // get karate.config property from karate.env 'ctx-local-dev'
     karate.log('karate.env selected environment was:', env);
     karate.configure("ssl", true)
 
     if (!env) {
-    env = 'dev'; // env can be anything: dev, qa, staging, etc.
+    env = 'dev'; // env can be anything: dev, prod, stg, ctx-local-dev,etc.
     }
 
   // base config
@@ -73,6 +74,10 @@ M  END
   else if (env == 'prod')
   {
     config.ccte = `https://api-ccte.epa.gov`
+  }
+  else if (env == 'ctx-local-dev')
+  {
+    config.ccte = ctx-local-dev
   }
 
     karate.configure('connectTimeout', 60000);

@@ -12,7 +12,7 @@ Feature: Feature file for hazard toxvaldb endpoints
     Then status 200
 
   Scenario: Testing the POST method for toxval by batch dtxsids
-    Given url "https://api-ccte.epa.gov/hazard/toxval/search/by-dtxsid/"
+    Given url ccte + "/hazard/toxval/search/by-dtxsid/"
     And request ["DTXSID7020182","DTXSID9020112"]
     When method POST
     Then status 200

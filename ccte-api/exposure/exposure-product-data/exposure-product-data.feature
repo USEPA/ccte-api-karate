@@ -18,7 +18,7 @@ Feature: Feature file for exposure product data resource
     Then status 200
 
   Scenario: Testing the POST method for product data by dtxsids
-    Given url "https://api-ccte.epa.gov/exposure/product-data/search/by-dtxsid/"
+    Given url ccte + "/exposure/product-data/search/by-dtxsid/"
     And request ["DTXSID7020182","DTXSID9020112"]
     When method POST
     Then status 200

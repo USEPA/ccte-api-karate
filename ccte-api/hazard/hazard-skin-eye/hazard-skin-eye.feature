@@ -13,7 +13,7 @@ Feature: Feature file for skin eye resource
     Then status 200
 
   Scenario: Testing the POST method for skin eye data by batch dtxsid
-    Given url "https://api-ccte.epa.gov/hazard/skin-eye/search/by-dtxsid/"
+    Given url ccte + "/hazard/skin-eye/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
