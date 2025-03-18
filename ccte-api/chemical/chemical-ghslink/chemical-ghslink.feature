@@ -1,4 +1,6 @@
 @smoke
+@all
+@chemical
 Feature: Feature file for chemical ghslink resource. Finding chemical safety data by dtxsid
 
   Background:
