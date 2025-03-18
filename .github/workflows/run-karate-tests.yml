@@ -34,8 +34,8 @@ on:
         - security
        #directory reference runs faster than issuing a 2nd tag in github actions
        api-selection:
-        description: 'API Selection (cors/security must match)'             
-        required: true
+        description: 'API Selection'             
+        required: false
         default: 'all'
         type: choice
         options:
@@ -44,6 +44,7 @@ on:
         - chemical
         - exposure
         - hazard
+        - html
 
 
 jobs:
