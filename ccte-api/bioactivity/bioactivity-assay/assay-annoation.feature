@@ -1,4 +1,6 @@
+@all
 @smoke
+@bioactivity
 Feature: Feature file for bioactivity assay resources
 
   Background:
