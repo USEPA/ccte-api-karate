@@ -1,5 +1,7 @@
 @regression
 @contracts
+@all
+@bioactivity
 Feature: Feature file to validate responses of bioactivity data resource
 
   Background:
