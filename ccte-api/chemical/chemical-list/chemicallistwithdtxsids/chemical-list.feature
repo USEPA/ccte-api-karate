@@ -1,4 +1,6 @@
 @smoke
+@all
+@chemical
 Feature: Feature file for chemical list resource with projection chemicallistwithdtxsids
 
   Background:
