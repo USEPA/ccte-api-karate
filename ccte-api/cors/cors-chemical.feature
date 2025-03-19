@@ -1,4 +1,6 @@
 @cors
+@all
+@chemical
 Feature: CORS Requests Chemical
 
   Background:
