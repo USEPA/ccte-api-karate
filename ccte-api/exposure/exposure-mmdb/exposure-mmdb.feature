@@ -1,6 +1,7 @@
 @smoke
 @all
 @exposure
+Feature: Feature file for exposure mmdb resources
   Background:
     * url ccte
     * header Accept = 'application/json' 
