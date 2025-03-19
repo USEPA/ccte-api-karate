@@ -1,4 +1,6 @@
 @smoke
+@all
+@chemical
 Feature: Feature file for chemical list resource with list name LCSSPUBCHEM. This chemical list is required for safety data check. 
 
   Background:
