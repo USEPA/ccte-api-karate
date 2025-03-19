@@ -1,5 +1,6 @@
-
 @security
+@all
+@hazard
 Feature: Feature file for security check on hazard microservice
 
   Background:
