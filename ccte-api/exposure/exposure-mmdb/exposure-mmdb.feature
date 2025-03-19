@@ -1,3 +1,6 @@
+@smoke
+@all
+@exposure
   Background:
     * url ccte
     * header Accept = 'application/json' 
