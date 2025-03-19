@@ -13,7 +13,7 @@ function() {
   // base config
   var config = {
 	env: env,
-    ccte: localDev,
+    ccte: `https://api-ccte.epa.gov`,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     fakekey: fake,
