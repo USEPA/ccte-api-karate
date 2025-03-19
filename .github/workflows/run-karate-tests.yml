@@ -20,7 +20,7 @@ on:
         - ctx-local-stg
 
        api:
-        description: 'API Selection (html only available for prod + smoke)'             
+        description: 'API Selection (html only available for prod)'             
         required: true
         default: 'all'
         type: choice
