@@ -1,4 +1,6 @@
 @smoke
+@all
+@exposure
 Feature: Feature file for exposure SEEMs demographic data
 
   Background:
