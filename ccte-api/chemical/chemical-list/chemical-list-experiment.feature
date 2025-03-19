@@ -1,5 +1,7 @@
 @ignore
 @regression
+@all
+@chemical
 Feature: Feature file to see if the dtxsids of a  GET requested chemical list could be POSTed directly into another endpoint
 
   Background:
