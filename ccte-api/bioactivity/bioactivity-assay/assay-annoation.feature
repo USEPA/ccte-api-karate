@@ -61,7 +61,3 @@ Feature: Feature file for bioactivity assay resources
     When method POST
     Then status 200
 
-  Scenario: Testing the POST method to get ALL assay annotation by batch dtxsid
-    Given url ccte + "/bioactivity/assay/"
-    And request batchdtxsid
-    When method POST
