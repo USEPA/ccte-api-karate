@@ -1,6 +1,4 @@
 @cors
-@all
-@hazard
 Feature: CORS Requests Hazard
 
   Background:
