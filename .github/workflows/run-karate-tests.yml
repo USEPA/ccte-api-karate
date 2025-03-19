@@ -18,8 +18,21 @@ on:
         options:
         - prod
         - stg
-        - dev
         - ctx-local-dev
+
+       api-selection:
+        description: 'API Selection (html only available for prod + smoke)'             
+        required: false
+        default: 'all'
+        type: choice
+        options:
+        - all
+        - bioactivity
+        - chemical
+        - exposure
+        - hazard
+        - html
+
        test:
         description: 'Test Type'
         required: true
@@ -32,19 +45,6 @@ on:
         - contracts
         - cors
         - security
-       #directory reference runs faster than issuing a 2nd tag in github actions
-       api-selection:
-        description: 'API Selection'             
-        required: false
-        default: 'all'
-        type: choice
-        options:
-        - all
-        - bioactivity
-        - chemical
-        - exposure
-        - hazard
-        - html
 
 
 jobs:
@@ -65,7 +65,7 @@ jobs:
         
     - name: Run Karate with Java
 
-      run: java -jar karate-1.4.1.jar -t "@${{ inputs.test }}, $@{{ inputs.api-selection }}" -e '${{ inputs.env }} | ${{secrets.API_KEY}} | ${{secrets.FAKE_KEY}} | ${{secrets.CTX_LOCAL_DEV}}' ccte-api -o ccte-api/reports/
+      run: java -jar karate-1.4.1.jar -t "$@{{ inputs.api-selection }},@${{ inputs.test }}" -e '${{ inputs.env }} | ${{secrets.API_KEY}} | ${{secrets.FAKE_KEY}} | ${{secrets.CTX_LOCAL_DEV}}' ccte-api -o ccte-api/reports/
 
  
   result:
