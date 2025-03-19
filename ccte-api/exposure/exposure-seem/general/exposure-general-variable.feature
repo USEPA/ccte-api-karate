@@ -1,5 +1,7 @@
 @regression
 @contracts
+@all
+@exposure
 Feature: Feature file for validating responses of exposure seem general resource
 
   Background:
