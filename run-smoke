@@ -2,4 +2,4 @@
 java -jar karate-1.4.1.jar -t @smoke -e ctx-local-dev ccte-api
 
 #this is an example run file
-#multiple tags can be used at the same time -t @tag1 -t @tag2 (this example implies operator AND)
+#multiple tags can be used at the same time -t @tag1 -t @tag2 (this format implies operator AND)
