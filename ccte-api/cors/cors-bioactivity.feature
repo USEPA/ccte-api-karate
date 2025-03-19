@@ -1,6 +1,4 @@
 @cors
-@all
-@bioactivity
 Feature: CORS Requests
 
   Background:
