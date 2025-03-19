@@ -16,9 +16,8 @@ on:
         default: 'prod'
         type: choice
         options:
-        - prod
-        - stg
         - ctx-local-dev
+        - ctx-local-stg
 
        api:
         description: 'API Selection (html only available for prod + smoke)'             
@@ -32,19 +31,6 @@ on:
         - exposure
         - hazard
         - html
-
-       test:
-        description: 'Test Type'
-        required: true
-        default: 'smoke'
-        type: choice
-        options:
-        - smoke
-        - regression
-        - business
-        - contracts
-        - cors
-        - security
 
 
 jobs:
@@ -65,7 +51,7 @@ jobs:
         
     - name: Run Karate with Java
 
-      run: java -jar karate-1.4.1.jar -t "@${{ inputs.api }}", "@${{ inputs.test }}" -e '${{ inputs.env }} | ${{secrets.API_KEY}} | ${{secrets.FAKE_KEY}} | ${{secrets.CTX_LOCAL_DEV}}' ccte-api -o ccte-api/reports/
+      run: java -jar karate-1.4.1.jar -t "@${{ inputs.api }}", "@$smoke" -e '${{ inputs.env }} | ${{secrets.API_KEY}} | ${{secrets.FAKE_KEY}} | ${{secrets.CTX_LOCAL_DEV}}' ccte-api -o ccte-api/reports/
 
  
   result:
