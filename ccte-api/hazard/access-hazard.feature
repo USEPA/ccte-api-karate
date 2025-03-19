@@ -1,4 +1,5 @@
 @smoke
+@html
 Feature: Feature file to access hazard api
 
 
