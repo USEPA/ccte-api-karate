@@ -20,9 +20,9 @@ on:
         - stg
         - ctx-local-dev
 
-       api-selection:
+       api:
         description: 'API Selection (html only available for prod + smoke)'             
-        required: false
+        required: true
         default: 'all'
         type: choice
         options:
@@ -65,7 +65,7 @@ jobs:
         
     - name: Run Karate with Java
 
-      run: java -jar karate-1.4.1.jar -t "$@{{ inputs.api-selection }}", "@${{ inputs.test }}" -e '${{ inputs.env }} | ${{secrets.API_KEY}} | ${{secrets.FAKE_KEY}} | ${{secrets.CTX_LOCAL_DEV}}' ccte-api -o ccte-api/reports/
+      run: java -jar karate-1.4.1.jar -t "$@{{ inputs.api }}", "@${{ inputs.test }}" -e '${{ inputs.env }} | ${{secrets.API_KEY}} | ${{secrets.FAKE_KEY}} | ${{secrets.CTX_LOCAL_DEV}}' ccte-api -o ccte-api/reports/
 
  
   result:
