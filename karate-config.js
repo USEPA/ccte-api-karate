@@ -3,6 +3,7 @@ function() {
     var key = karate.env.split("|")[1]; // get karate config property from karate.env 'key'
     var fake = karate.env.split("|")[2]; // get karate.config property from karate.env 'fake'
     var localDev = karate.env.split("|")[3]; // get karate.config property from karate.env 'localDev'
+    var localStg = karate.env.split("|")[4]; // get karate.config property from karate.env 'localStg'
     karate.log('karate.env selected environment was:', env);
     karate.configure("ssl", true)
 
@@ -67,13 +68,9 @@ M  END
 `,
   }
   // switch environment
-  if (env == 'stg')
+  if (env == 'ctx-local-stg')
   {
-    config.ccte = `https://api-ccte-stg.epa.gov`
-  }
-  else if (env == 'prod')
-  {
-    config.ccte = `https://api-ccte.epa.gov`
+    config.ccte = localStg
   }
   else if (env == 'ctx-local-dev')
   {
