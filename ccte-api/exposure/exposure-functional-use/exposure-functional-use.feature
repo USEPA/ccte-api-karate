@@ -1,4 +1,6 @@
 @smoke
+@all
+@exposure
 Feature: Feature file for exposure functional use resource
 
   Background:
