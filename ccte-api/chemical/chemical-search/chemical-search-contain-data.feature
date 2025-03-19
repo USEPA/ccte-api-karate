@@ -1,5 +1,7 @@
 @regression
 @business
+@all
+@chemical
 Feature: Feature file for data validation of chemical search resource (substring)
 
   Background:
