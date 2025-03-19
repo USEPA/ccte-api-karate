@@ -1,3 +1,0 @@
-#!/bin/bash
-#bioactivity and exposure are currently run on stg and are set in their cors-testing feature file
-java -jar karate-1.4.1.jar -t @cors -e prod ccte-api
