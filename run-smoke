@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar karate-1.4.1.jar -t @smoke -e prod ccte-api
+java -jar karate-1.4.1.jar -t @smoke -e ctx-local-dev ccte-api
