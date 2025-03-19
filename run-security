@@ -1,3 +1,0 @@
-#!/bin/bash
-#exposure is currently run on stg and is set in its security feature file
-java -jar karate-1.4.1.jar -t @security -e prod ccte-api
