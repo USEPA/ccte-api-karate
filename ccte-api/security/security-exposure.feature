@@ -1,4 +1,6 @@
 @security
+@all
+@exposure
 Feature: Feature file for security check on exposure microservice
 
   Background:
