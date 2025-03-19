@@ -1,4 +1,6 @@
 @smoke
+@all
+@hazard
 Feature: Feature file for hazard toxref effects endpoints
   Background:
     * url ccte
