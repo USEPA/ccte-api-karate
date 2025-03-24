@@ -65,7 +65,7 @@ M  V30 18 1 1 17
 M  V30 END BOND
 M  V30 END CTAB
 M  END
-`,
+`
   }
 // switch environment
 if (env == 'ctx-local-stg')
@@ -73,7 +73,6 @@ if (env == 'ctx-local-stg')
   config.ccte = localStg
   config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`
 }
-	karate.log('baseurl: ',config.ccte);
 karate.configure('connectTimeout', 60000);
 karate.configure('readTimeout', 60000);
 
