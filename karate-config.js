@@ -71,6 +71,7 @@ M  END
   if (env == 'ctx-local-stg')
   {
     config.ccte = localStg;
+    config. batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
   }
 
     karate.configure('connectTimeout', 60000);
