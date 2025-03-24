@@ -1,9 +1,9 @@
 function() {
     var env = karate.env // get java system property from karate.env 'env'
-    var key = karate.properties[key]; // get karate config property from karate.env 'key'
-    var fake = karate.properties[fake]; // get karate.config property from karate.env 'fake'
-    var localDev = (karate.properties[localDev].trim(); // get karate.config property from karate.env 'localDev'
-    var localStg = (karate.properties[localStg].trim(); // get karate.config property from karate.env 'localStg'
+    var key = karate.properties['key']; // get karate config property from karate.env 'key'
+    var fake = karate.properties['fake']; // get karate.config property from karate.env 'fake'
+    var localDev = (karate.properties['localDev'].trim(); // get karate.config property from karate.env 'localDev'
+    var localStg = (karate.properties['localStg'].trim(); // get karate.config property from karate.env 'localStg'
     karate.log('karate.env selected environment was:', env);
     karate.configure("ssl", true)
 
