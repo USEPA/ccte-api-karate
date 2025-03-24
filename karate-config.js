@@ -66,16 +66,16 @@ M  V30 END BOND
 M  V30 END CTAB
 M  END
 `
- }
- // switch environment
- if (env == 'ctx-local-stg')
- {
-   config.ccte = localStg
-   config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`
- }
+  }
+  // switch environment
+  if (env == 'ctx-local-stg')
+  {
+    config.ccte = localStg
+    config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`
+  }
 
-   karate.configure('connectTimeout', 60000);
-   karate.configure('readTimeout', 60000);
+    karate.configure('connectTimeout', 60000);
+    karate.configure('readTimeout', 60000);
 
-return config;
+    return config;
 }
