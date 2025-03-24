@@ -14,7 +14,7 @@ function() {
   // base config
   var config = {
 	env: env,
-    ccte: localDev,
+    ccte: localDev.toURL(),
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     fakekey: fake,
