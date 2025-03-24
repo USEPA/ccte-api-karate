@@ -14,7 +14,7 @@ function() {
   // base config
   var config = {
 	env: env,
-    ccte: localDev.toURL(),
+    ccte: localDev.toURL();,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     fakekey: fake,
@@ -70,7 +70,7 @@ M  END
   // switch environment
   if (env == 'ctx-local-stg')
   {
-    config.ccte = localStg.toURL()
+    config.ccte = localStg.toURL();
   }
 
     karate.configure('connectTimeout', 60000);
