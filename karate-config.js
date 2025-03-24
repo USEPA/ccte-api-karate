@@ -8,13 +8,13 @@ function() {
     karate.configure("ssl", true)
 
     if (!env) {
-    env = 'ctx-local-dev'; // env can be either ctx-local-dev or ctx-local-stg.
+    env = 'dev'; // env can be either ctx-local-dev or ctx-local-stg.
     }
 
   // base config
   var config = {
 	env: env,
-    ccte: localDev,
+    ccte: `https://api-ccte.epa.gov`,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     fakekey: fake,
@@ -66,15 +66,19 @@ M  V30 END BOND
 M  V30 END CTAB
 M  END
 `
-}
-// switch environment
-if (env == 'ctx-local-stg')
-{
-  config.ccte = localStg
-  config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`
-}
-karate.configure('connectTimeout', 60000);
-karate.configure('readTimeout', 60000);
+ }
+ // switch environment
+ if (env == 'ctx-local-stg')
+ {
+   config.ccte = localStg
+   config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`
+ }
+else if (env == 'ctx-local-dev')
+ {
+   config.ccte = localDev
+ }
+   karate.configure('connectTimeout', 60000);
+   karate.configure('readTimeout', 60000);
 
 return config;
 }
