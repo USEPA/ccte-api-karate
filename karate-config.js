@@ -8,13 +8,13 @@ function() {
     karate.configure("ssl", true)
 
     if (!env) {
-    env = 'ctx-local-dev'; // env can be either ctx-local-dev or ctx-local-stg.
+    env = 'prod'; // env can be either ctx-local-dev or ctx-local-stg.
     }
 
   // base config
   var config = {
 	env: env,
-    ccte: localDev,
+    ccte: `https://api-ccte.epa.gov`,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     fakekey: fake,
@@ -68,7 +68,11 @@ M  END
 `,
   }
   // switch environment
-  if (env === 'ctx-local-stg')
+  if (env === 'ctx-local-dev')
+  {
+    config.ccte = localDev;
+  }
+  else if (env === 'ctx-local-stg')
   {
     config.ccte = localStg;
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
