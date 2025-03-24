@@ -71,10 +71,12 @@ M  END
   if (env === 'ctx-local-dev')
   {
     config.ccte = localDev;
+    header Host = localDev;
   }
   else if (env === 'ctx-local-stg')
   {
     config.ccte = localStg;
+    header Host = localStg;
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
   }
 
