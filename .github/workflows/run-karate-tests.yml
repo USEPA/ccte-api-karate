@@ -51,7 +51,7 @@ jobs:
         
     - name: Run Karate with Java
 
-      run: java -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ''${{ inputs.env }}' | '${{secrets.API_KEY}}' | '${{secrets.FAKE_KEY}}' | ${{secrets.CLD}} | ${{secrets.CLS}}' ccte-api -o ccte-api/reports/
+      run: java -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ''${{ inputs.env }}' | '${{secrets.API_KEY}}' | '${{secrets.FAKE_KEY}}' | 'localDev =${{secrets.CLD}}' | 'localStg =${{secrets.CLS}}'' ccte-api -o ccte-api/reports/
 
  
   result:
