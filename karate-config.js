@@ -68,7 +68,7 @@ M  END
 `,
   }
   // switch environment
-  if (env == 'ctx-local-stg')
+  if (env === 'ctx-local-stg')
   {
     config.ccte = localStg;
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
