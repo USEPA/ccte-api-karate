@@ -15,7 +15,7 @@ Feature: Feature file for genetox resource
     Then status 200
 
   Scenario: Testing the POST method for genetox summary data by batch dtxsid
-    Given url "https://api-ccte.epa.gov/hazard/genetox/summary/search/by-dtxsid/"
+    Given url ccte + "/hazard/genetox/summary/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
@@ -26,7 +26,7 @@ Feature: Feature file for genetox resource
     Then status 200
 
   Scenario: Testing the POST method for genetox detail data by batch dtxsid
-    Given url "https://api-ccte.epa.gov/hazard/genetox/details/search/by-dtxsid/"
+    Given url ccte + "/hazard/genetox/details/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
