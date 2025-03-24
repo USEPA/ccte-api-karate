@@ -70,7 +70,7 @@ M  END
   // switch environment
   if (env == 'ctx-local-stg')
   {
-    config.ccte = localStg
+    config.ccte = localStg.toURL()
   }
 
     karate.configure('connectTimeout', 60000);
