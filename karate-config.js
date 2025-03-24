@@ -66,7 +66,7 @@ M  V30 END BOND
 M  V30 END CTAB
 M  END
 `
-  }
+}
 // switch environment
 if (env == 'ctx-local-stg')
 {
