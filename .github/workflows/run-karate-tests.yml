@@ -16,6 +16,7 @@ on:
         default: 'prod'
         type: choice
         options:
+        - prod
         - ctx-local-dev
         - ctx-local-stg
 
