@@ -13,7 +13,6 @@ function() {
   // base config
   var config = {
 	env: env,
-    maskRequestHeaders: `['Host']`,
     ccte: `https://api-ccte.epa.gov`,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
