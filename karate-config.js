@@ -6,7 +6,7 @@ function() {
     var localStg = karate.properties['localStg'].trim() // get karate.config property from karate.env 'localStg'
     karate.log('karate.env selected environment was:', env);
     karate.configure("ssl", true)
-    var LM = Java.type('ccte-api.headers.DemoLogModifier');
+    var LM = Java.type('demo.headers.DemoLogModifier');
     karate.configure('logModifier', LM.INSTANCE);
     if (!env) {
     env = 'prod'; // env can be either ctx-local-dev or ctx-local-stg.
