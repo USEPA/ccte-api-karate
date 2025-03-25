@@ -5,9 +5,7 @@ function() {
     var localDev = karate.properties['localDev'].trim() // get karate.config property from karate.env 'localDev'
     var localStg = karate.properties['localStg'].trim() // get karate.config property from karate.env 'localStg'
     karate.log('karate.env selected environment was:', env);
-    karate.configure("ssl", true)
-    karate.configure("host", false)
-
+    
     if (!env) {
     env = 'prod'; // env can be either ctx-local-dev or ctx-local-stg.
     }
@@ -15,6 +13,7 @@ function() {
   // base config
   var config = {
 	env: env,
+    maskRequestHeaders: ['host']
     ccte: `https://api-ccte.epa.gov`,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
