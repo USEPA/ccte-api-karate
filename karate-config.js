@@ -77,7 +77,7 @@ M  END
     config.ccte = localStg;
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
   }
-
+    karate.configure('report', {showLog: true, showAllSteps: false, showCallArg: false});
     karate.configure('connectTimeout', 60000);
     karate.configure('readTimeout', 60000);
 
