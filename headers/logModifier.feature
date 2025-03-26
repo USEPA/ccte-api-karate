@@ -1,6 +1,8 @@
 Feature: for masking headers
 
 Background:
+  * def LM = Java.type('headers.logModifier')
+  * configure logModifier = new LM()
   Given url ccte
   And path 'Host'
   When method GET
