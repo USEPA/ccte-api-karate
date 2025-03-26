@@ -4,7 +4,7 @@ Background:
   * def LM = Java.type('headers.logModifier')
   * configure logModifier = new LM()
   Given url ccte
-  And path 'Host'
+  And path 'headers'
   When method GET
   Then status 200
   And def token = response
@@ -12,7 +12,7 @@ Background:
 
 Scenario: set header
   * header Host = token + time + ccte
-  Given path 'Host', token
+  Given path 'headers', token
   And param url = ccte
   When method GET
   Then 200
