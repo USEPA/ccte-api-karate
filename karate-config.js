@@ -4,6 +4,8 @@ function() {
     var fake = karate.properties['fake'] // get karate.config property from karate.env 'fake'
     var localDev = karate.properties['localDev'].trim() // get karate.config property from karate.env 'localDev'
     var localStg = karate.properties['localStg'].trim() // get karate.config property from karate.env 'localStg'
+    var hostDev = karate.properties['hostDev'].trim() // get karate.config property from karate.env 'localDev'
+    var hostStg = karate.properties['hostStg'].trim() // get karate.config property from karate.env 'localStg'
     karate.log('karate.env selected environment was:', env);
     
     if (!env) {
@@ -17,6 +19,7 @@ function() {
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     fakekey: fake,
+    host: `api-ccte-.epa.gov`
         mol: `
   Mrv1805 07292016252D          
 
@@ -70,10 +73,12 @@ M  END
   if (env === 'ctx-local-dev')
   {
     config.ccte = localDev;
+    config.host = devHost;
   }
   else if (env === 'ctx-local-stg')
   {
     config.ccte = localStg;
+    config.host = stgHost
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
   }
     karate.configure('connectTimeout', 60000);
