@@ -5,7 +5,6 @@ Feature: Feature file for chemical details resource
 
   Background:
     * url ccte
-    * header Host = ccte
     * header Accept = 'application/json' 
     * header Content-Type = 'application/json; charset=utf-8'
     * header x-api-key = apikey
