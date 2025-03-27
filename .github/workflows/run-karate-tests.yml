@@ -51,7 +51,7 @@ jobs:
         distribution: 'oracle'
         
     - name: Run Karate with Java
-      run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/target/
+      run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -DhostDev=${{secrets.HD}} -DhostStg=${{secrets.HS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/target/
 
  
   result:
