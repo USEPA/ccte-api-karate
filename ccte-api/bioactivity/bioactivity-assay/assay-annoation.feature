@@ -5,6 +5,7 @@ Feature: Feature file for bioactivity assay resources
 
   Background:
     * url ccte
+    * maskRequestHeaders: ['Host']
     * header Accept = 'application/json' 
     * header Content-Type = 'application/json; charset=utf-8'
     * header x-api-key = apikey
