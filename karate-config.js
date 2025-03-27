@@ -13,6 +13,7 @@ function() {
   // base config
   var config = {
 	env: env,
+    maskRequestHeaders: ['Host'],
     ccte: `https://api-ccte.epa.gov`,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
@@ -76,8 +77,6 @@ M  END
     config.ccte = localStg;
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
   }
-    var LM = Java.type('ccte-api-karate.headers.logModifier');
-    karate.configure('logModifier', LM.instance);
     karate.configure('connectTimeout', 60000);
     karate.configure('readTimeout', 60000);
 
