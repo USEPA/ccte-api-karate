@@ -76,8 +76,6 @@ M  END
     config.ccte = localStg;
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
   }
-    var LM = Java.type('headers.logModifier');
-    karate.configure('logModifier', LM.instance);
     karate.configure('connectTimeout', 60000);
     karate.configure('readTimeout', 60000);
 
