@@ -51,7 +51,7 @@ jobs:
         distribution: 'oracle'
         
     - name: Run Karate with Java
-      run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/reports/
+      run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/target/
 
  
   result:
@@ -72,7 +72,7 @@ jobs:
     # Artifact name
         name: ${{ inputs.api-selection }} ${{ inputs.test }} Result ${{ steps.date.outputs.date }}
     # A file, directory or wildcard pattern that describes what to upload
-        path: ccte-api/reports
+        path: ccte-api/target
         
   clean-up:
    runs-on: th878
