@@ -74,20 +74,6 @@ jobs:
     # A file, directory or wildcard pattern that describes what to upload
         path: ccte-api/target/karate-reports/karate-summary-json.txt
         
-    - name: Test Summary
-      uses: test-summary/action@v2
-      with:
-        paths: karate-summary-json.txt
-        output: test-summary.md
-        if: always()
-
-    - name: Upload test summary
-      uses: actions/upload-artifact@v3
-      with:
-         name: test-summary
-         path: test-summary.md
-         if: always()
-        
   clean-up:
    runs-on: th878
    needs: result
