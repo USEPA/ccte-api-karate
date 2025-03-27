@@ -19,7 +19,7 @@ function() {
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     fakekey: fake,
-    host: `api-ccte-.epa.gov`
+    host: `api-ccte-.epa.gov`,
         mol: `
   Mrv1805 07292016252D          
 
