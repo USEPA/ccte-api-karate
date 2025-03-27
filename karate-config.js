@@ -73,12 +73,12 @@ M  END
   if (env === 'ctx-local-dev')
   {
     config.ccte = localDev;
-    config.host = devHost;
+    config.host = hostDev;
   }
   else if (env === 'ctx-local-stg')
   {
     config.ccte = localStg;
-    config.host = stgHost
+    config.host = hostStg;
     config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
   }
     karate.configure('connectTimeout', 60000);
