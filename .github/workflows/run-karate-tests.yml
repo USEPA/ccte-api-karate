@@ -65,7 +65,6 @@ jobs:
       run: echo "date=$(TZ=":EST" date +'%Y-%m-%d %H.%MEST')" >>$GITHUB_OUTPUT
         
     - name: Upload a Build Artifact
-      id: results
       uses: actions/upload-artifact@v4.3.1      
       if: ${{ always() }}
       with:
@@ -77,10 +76,7 @@ jobs:
          ccte-api/target/karate-reports/res
          ccte-api/target/karate-reports/karate-summary.html
          ccte-api/target/karate-reports/karate-labs-logo-ring.svg
-
-    - name: Summary Display
-      run: echo '${{ steps.results }}' >> $GITHUB_STEP_SUMMARY  
-         
+        compression-level: 0
   clean-up:
    runs-on: th878
    needs: result
