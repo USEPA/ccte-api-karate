@@ -76,7 +76,7 @@ jobs:
          ccte-api/target/karate-reports/res
          ccte-api/target/karate-reports/karate-summary.html
          ccte-api/target/karate-reports/karate-labs-logo-ring.svg
-        compression-level: 0
+
   clean-up:
    runs-on: th878
    needs: result
