@@ -52,7 +52,7 @@ jobs:
         
     - name: Run Karate with Java
       run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -DhostDev=${{secrets.HD}} -DhostStg=${{secrets.HS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/target/
-    - run: echo "This Job is running in ${{ inputs.api }} API on the ${{ inputs.env }} environment."
+    - run: echo 'This Job is running in ${{ inputs.api }} API on the ${{ inputs.env }} environment.' >> $GITHUB_STEP_SUMMARY
  
   result:
     runs-on: th878
@@ -77,7 +77,6 @@ jobs:
          ccte-api/target/karate-reports/res
          ccte-api/target/karate-reports/karate-summary.html
          ccte-api/target/karate-reports/karate-labs-logo-ring.svg
-        run: echo "path" >>$GITHUB_OUTPUT
         
         
   clean-up:
