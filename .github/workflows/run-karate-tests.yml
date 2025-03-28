@@ -78,7 +78,7 @@ jobs:
          ccte-api/target/karate-reports/res
          ccte-api/target/karate-reports/karate-summary.html
          ccte-api/target/karate-reports/karate-labs-logo-ring.svg
-        run: echo "summary" >>$GITHUB_OUTPUT
+        run: echo "path" >>$GITHUB_OUTPUT
         
         
   clean-up:
