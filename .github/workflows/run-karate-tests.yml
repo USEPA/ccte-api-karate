@@ -80,6 +80,7 @@ jobs:
          ccte-api/target/karate-reports/karate-labs-logo-ring.svg
          
     - name: Summary Display
+      uses: actions/checkout@v4
     - run: echo '${{ steps.results.outcome }}>> $GITHUB_STEP_SUMMARY
 
   clean-up:
