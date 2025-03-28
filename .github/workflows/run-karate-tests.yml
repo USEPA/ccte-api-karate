@@ -52,7 +52,7 @@ jobs:
         
     - name: Run Karate with Java
       run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -DhostDev=${{secrets.HD}} -DhostStg=${{secrets.HS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/target/
-
+    - run: echo "This Job is running in ${{ inputs.api }} API on the ${{ inputs.env }} environment."
  
   result:
     runs-on: th878
@@ -71,12 +71,14 @@ jobs:
       with:
     # Artifact name
         name: ${{ inputs.api }} Smoke Result ${{ steps.date.outputs.date }}
+        id: summary
     # A file, directory or wildcard pattern that describes what to upload
         path: | 
          ccte-api/target/karate-reports/karate-summary-json.txt
          ccte-api/target/karate-reports/res
          ccte-api/target/karate-reports/karate-summary.html
          ccte-api/target/karate-reports/karate-labs-logo-ring.svg
+        run: echo "summary" >>$GITHUB_OUTPUT
         
         
   clean-up:
