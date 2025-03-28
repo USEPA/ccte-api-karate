@@ -77,8 +77,17 @@ jobs:
          ccte-api/target/karate-reports/res
          ccte-api/target/karate-reports/karate-summary.html
          ccte-api/target/karate-reports/karate-labs-logo-ring.svg
-        
-        
+         
+    - name: Summary Display
+      uses: karol-brejna-i/webpage-screenshot-action@v1
+      with: 
+        url: ccte-api/target/karate-reports/karate-summary.html
+    - uses: actions/upload-artifact@v4.3.1 
+      with: 
+         name: simple-screenshot
+         path: ${{ github.workspace }}/*png
+    - run: echo '${{ github.workspace }}/*png' >> $GITHUB_STEP_SUMMARY
+
   clean-up:
    runs-on: th878
    needs: result
