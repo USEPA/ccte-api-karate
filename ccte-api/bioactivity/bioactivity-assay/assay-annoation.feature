@@ -50,6 +50,12 @@ Feature: Feature file for bioactivity assay resources
     When method GET
     Then status 200
 
+  Scenario: Testing the GET method for assay data by aeid (projection = ccd-single-conc)
+    Given path '/bioactivity/assay/search/by-aeid/3032'
+    And param projection = 'ccd-single-conc'
+    When method GET
+    Then status 200
+
   Scenario: Testing the GET method for array of dtxsids by aeid
     Given path '/bioactivity/assay/chemicals/search/by-aeid/3032'
     When method GET
