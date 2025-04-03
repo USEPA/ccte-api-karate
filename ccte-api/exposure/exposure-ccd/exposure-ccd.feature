@@ -33,3 +33,9 @@ Feature: Feature file for CCD exposure resources
     Given path '/exposure/ccd/monitoring-data/search/by-dtxsid/DTXSID7020182'
     When method GET
     Then status 200
+    
+  Scenario: Testing the GET method for biomonitoring data by dtxsid (NHANES Inferences) with projection (ccd-biomonitoring)
+    Given path '/exposure/ccd/monitoring-data/search/by-dtxsid/DTXSID7020182'
+    And param projection = 'ccd-biomonitoring'
+    When method GET
+    Then status 200
