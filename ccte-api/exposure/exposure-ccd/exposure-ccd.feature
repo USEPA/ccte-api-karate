@@ -39,3 +39,8 @@ Feature: Feature file for CCD exposure resources
     And param projection = 'ccd-biomonitoring'
     When method GET
     Then status 200
+
+  Scenario: Testing the GET method for production volume data by dtxsid 
+    Given path '/exposure/ccd/production-volume/search/by-dtxsid/DTXSID0020232'
+    When method GET
+    Then status 200
