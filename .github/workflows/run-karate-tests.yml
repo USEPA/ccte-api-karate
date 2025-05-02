@@ -21,7 +21,7 @@ on:
         - ctx-local-stg
 
        api:
-        description: 'API Selection (html only available for prod)'             
+        description: 'API Selection'             
         required: true
         default: 'all'
         type: choice
