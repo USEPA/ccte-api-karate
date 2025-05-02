@@ -53,6 +53,13 @@ Feature: Feature file for bioactivity resource
     When method POST
     Then status 200
 
+  Scenario: Testing the GET method for bioactivity data by dtxsid AND tissue
+    Given url ccte + "/bioactivity/data/summary/search/by-tissue/"
+    And param dtxsid = 'DTXSID7024241'
+    And param tissue = 'liver'
+    When method GET
+    Then status 200
+
   Scenario: Testing the GET method for bioactivity data summary by aeid
     Given path '/bioactivity/data/summary/search/by-aeid/3032'
     When method GET
@@ -61,5 +68,12 @@ Feature: Feature file for bioactivity resource
   Scenario: Testing the GET method for bioactivity data summary by dtxsid
     Given path '/bioactivity/data/summary/search/by-dtxsid/DTXSID9026974'
     When method GET
+    Then status 200
+
+  @ignore
+  Scenario: Testing the POST method for bioactivity data summary by batch
+    Given url ccte + "/bioactivity/data/summary/batchsearch/"
+    And request '1210314470\nEPAPLT0232A03\nTP0000075F10\nPhenobarbital\nEPAPLT0237A04'
+    When method POST
     Then status 200
 
