@@ -1,4 +1,3 @@
-@ignore
 @smoke
 @all
 @chemical
