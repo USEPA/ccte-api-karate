@@ -20,7 +20,6 @@ Feature: Feature file for chemical file resource (image)
 
   Scenario: Testing the GET method for structure image by gsid
     Given path 'chemical/file/image/search/by-gsid/20182'
-    And param format = 'SVG'
     When method GET
     Then status 200
 
