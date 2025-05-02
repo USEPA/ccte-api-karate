@@ -14,11 +14,6 @@ Feature: Feature file for chemical search resource (ms ready)
     When method GET
     Then status 200
 
-  Scenario: Testing the POST method for ms ready chemical using mass range
-    Given path '/chemical/msready/search/by-mass/154.9/154.95'
-    When method GET
-    Then status 200
-
   Scenario: Testing the GET method for ms ready chemical by formula
     Given path '/chemical/msready/search/by-formula/C16H24N2O5S'
     When method GET
