@@ -39,6 +39,7 @@ jobs:
   build:
 
     runs-on: th878
+    continue-on-error: ${{matrix.experimental}}
     strategy:
       fail-fast: false
     steps:     
@@ -56,6 +57,7 @@ jobs:
  
   result:
     runs-on: th878
+    continue-on-error: ${{matrix.experimental}}
     strategy:
       fail-fast: false
     needs: build
@@ -79,6 +81,7 @@ jobs:
 
   clean-up:
    runs-on: th878
+   continue-on-error: ${{matrix.experimental}}
    needs: result
    steps:
     - name: 'Cleanup build folder'
