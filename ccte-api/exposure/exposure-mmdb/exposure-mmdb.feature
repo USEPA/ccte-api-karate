@@ -1,7 +1,8 @@
 @smoke
 @all
 @exposure
-Feature: Feature file for exposure mmdb resources
+Feature: Feature file for exposure MMDB resource
+
   Background:
     * url ccte
     * header Accept = 'application/json' 
@@ -14,7 +15,8 @@ Feature: Feature file for exposure mmdb resources
     Then status 200
 
   Scenario: Testing the GET method for harmonized aggregate records by medium
-    Given path '/exposure/mmdb/aggregate/by-medium/surface water'
+    Given path '/exposure/mmdb/aggregate/by-medium/groundwater'
+    And param pageNumber = '1'
     When method GET
     Then status 200
 
@@ -24,7 +26,8 @@ Feature: Feature file for exposure mmdb resources
     Then status 200
 
   Scenario: Testing the GET method for harmonized single-sample records by medium
-    Given path '/exposure/mmdb/single-sample/by-medium/surface water'
+    Given path '/exposure/mmdb/single-sample/by-medium/groundwater'
+    And param pageNumber = '1'
     When method GET
     Then status 200
 
