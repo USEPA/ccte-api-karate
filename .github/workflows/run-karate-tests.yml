@@ -53,8 +53,12 @@ jobs:
         
     - name: Run Karate with Java
       run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -DhostDev=${{secrets.HD}} -DhostStg=${{secrets.HS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/target/
-    - run: echo 'This Job is running in ${{ inputs.api }} API on the ${{ inputs.env }} environment.' >> $GITHUB_STEP_SUMMARY
- 
+    - run: |
+           echo 'This Job is running in ${{ inputs.api }} API on the ${{ inputs.env }} environment.' >> $GITHUB_STEP_SUMMARY
+           pass=$(scenariospassed ctx-api/target/karate-reports/karate-summary-json.txt)
+           fail=$(scenariosfailed ctx-api/target/karate-reports/karate-summary-json.txt)
+           echo 'Scenarios Passed: ${pass}📗' >> $GITHUB_STEP_SUMMARY
+           echo 'Scenarios Failed: ${fail}📕' >> $GITHUB_STEP_SUMMARY
   result:
     runs-on: th878
     strategy:
