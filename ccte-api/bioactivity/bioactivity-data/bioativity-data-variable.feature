@@ -80,4 +80,4 @@ Feature: Feature file for validating responses of bioactivity data resource
     Given path '/bioactivity/data/summary/search/by-dtxsid/DTXSID9026974'
     When method GET
     Then status 200
-    And match response == {dxtsid: '#present', activeMc: '#present', totalMc: '#present', activeSc: '#present', totalSc: '#present', cytotoxMedianRaw: '#present', cytotoxMax: '#present', globalMad: '#present', cytotoxMedianLog: '#present', cytotoxMedianUm: '#present', cytotoxLowerUm: '#present', cytotoxLowerLog: '#present', ntested:  '#present', nhit: '#present'}
+    And match response == [{dxtsid: '#present', activeMc: '#present', totalMc: '#present', activeSc: '#present', totalSc: '#present', cytotoxMedianRaw: '#present', cytotoxMax: '#present', globalMad: '#present', cytotoxMedianLog: '#present', cytotoxMedianUm: '#present', cytotoxLowerUm: '#present', cytotoxLowerLog: '#present', ntested:  '#present', nhit: '#present'}]
