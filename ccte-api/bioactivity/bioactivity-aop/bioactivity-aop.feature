@@ -1,4 +1,6 @@
 @smoke
+@bioactivity
+@all
 Feature: Feature file for bioactivity Toxcast AOP resources
 
   Background:
