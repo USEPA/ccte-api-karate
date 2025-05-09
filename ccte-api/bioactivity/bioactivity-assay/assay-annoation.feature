@@ -51,7 +51,7 @@ Feature: Feature file for bioactivity assay resources
     Then status 200
 
   Scenario: Testing the GET method for assay data by aeid (projection = ccd-assay-aop)
-    Given path '/bioactivity/assay/search/by-aeid/3032'
+    Given path '/bioactivity/assay/search/by-aeid/711'
     And param projection = 'ccd-assay-aop'
     When method GET
     Then status 200
