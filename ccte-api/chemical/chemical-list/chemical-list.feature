@@ -69,7 +69,6 @@ Feature: Feature file for chemical list resource
     When method GET
     Then status 200
 
-#passes but returns nothing
   Scenario: Testing the GET method for public list information by dtxsid if it contains dtxsids (projection = chemicallistwithdtxsids)
     Given path '/chemical/list/search/by-dtxsid/DTXSID7020182'
     And param projection = 'chemicallistwithdtxsids'
