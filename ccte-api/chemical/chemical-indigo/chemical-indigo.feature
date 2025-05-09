@@ -1,6 +1,6 @@
 @smoke
-@all
 @chemical
+@all
 Feature: Feature file for chemical info from Indigo toolkit
 
   Background:
