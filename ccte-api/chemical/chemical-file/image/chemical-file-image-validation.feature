@@ -1,7 +1,7 @@
 @regression
 @contracts
-@all
 @chemical
+@all
 Feature: Feature file validating responses for chemical file resource
 
   Background:
