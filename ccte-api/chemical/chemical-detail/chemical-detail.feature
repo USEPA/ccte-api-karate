@@ -20,6 +20,17 @@ Feature: Feature file for chemical details resource
     When method POST
     Then status 200
 
+  Scenario: Testing Error Message: GET method for chemical details by dtxsid (wrong projection)
+    Given path '/chemical/detail/search/by-dtxsid/DTXSID20144773'
+    And param projection = 'chemicaldetailstandard1'
+    When method GET
+    Then status 400
+
+  Scenario: Testing Error Message: GET method for chemical details by dtxsid (wrong dtxsid)
+    Given path '/chemical/detail/search/by-dtxsid/DTXSID777x'
+    When method GET
+    Then status 400
+
   Scenario: Testing the GET method for chemical details by dtxcid
     Given path '/chemical/detail/search/by-dtxcid/DTXCID40210'
     When method GET
@@ -31,8 +42,19 @@ Feature: Feature file for chemical details resource
     When method POST
     Then status 200
 
+  Scenario: Testing Error Message: GET method for chemical details by dtxcid (wrong dtxcid)
+    Given path '/chemical/detail/search/by-dtxsid/DTXCID30182x'
+    When method GET
+    Then status 400
+
   Scenario: Testing the GET method for ALL chemical details
     Given path 'chemical/all'
+    When method GET
+    Then status 200
+
+  Scenario: Testing the GET method for ALL chemical details (projection = all-ids)
+    Given path 'chemical/all'
+    And param projeciton = 'all-ids''
     When method GET
     Then status 200
 
