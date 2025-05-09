@@ -2,7 +2,7 @@
 @contracts
 @chemical
 @all
-Feature: Feature file for chemical ghslink resource. Finding chemical safety data by dtxsid
+Feature: Feature file for validating the response of the chemical ghslink resource (Finding chemical safety data by dtxsid)
 
   Background:
     * url ccte
