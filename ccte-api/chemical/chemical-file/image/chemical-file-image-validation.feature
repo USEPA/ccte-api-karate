@@ -2,7 +2,7 @@
 @contracts
 @chemical
 @all
-Feature: Feature file validating responses for chemical file resource
+Feature: Feature file for validating the response format of the chemical file image resource
 
   Background:
     * url ccte
