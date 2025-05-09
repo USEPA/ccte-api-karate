@@ -38,9 +38,9 @@ Feature: Feature file for bioactivity assay resources
     When method GET
     Then status 200
 
-  Scenario: Testing the GET method for assay data by aeid (projection = ccd-assay-tcpl)
+  Scenario: Testing the GET method for assay data by aeid (projection = ccd-tcpl-processing)
     Given path '/bioactivity/assay/search/by-aeid/3032'
-    And param projection = 'ccd-assay-tcpl'
+    And param projection = 'ccd-tcpl-processing'
     When method GET
     Then status 200
 
