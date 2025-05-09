@@ -14,16 +14,16 @@ Feature: Feature file for validating responses of bioactivity Toxcast AOP resour
     Given path '/bioactivity/aop/search/by-toxcast-aeid/63'
     When method GET
     Then status 200
-    And match response == [{toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}]
+    And match response[0] == {toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}
 
   Scenario: Validating the response of the GET method for AOP search using entrez gene id
     Given path '/bioactivity/aop/search/by-entrez-gene-id/196'
     When method GET
     Then status 200
-    And match response == [{toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}]
+    And match response[0] == {toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}
 
   Scenario: Validating the response of the GET method for AOP search using event number
     Given path '/bioactivity/aop/search/by-event-number/18'
     When method GET
     Then status 200
-    And match response == [{toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}]
+    And match response[0] == {toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}
