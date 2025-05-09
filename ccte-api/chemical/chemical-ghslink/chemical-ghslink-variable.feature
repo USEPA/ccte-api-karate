@@ -15,3 +15,10 @@ Feature: Feature file for chemical ghslink resource. Finding chemical safety dat
     When method GET
     Then status 200
     And match response == {dtxsid: '#present', isSafetyData: '#present', safetyUrl: '#present'}
+    
+  Scenario: Validating the response of the POST method for ghslink chemical safety data
+    Given url ccte + "/chemical/ghslink/to-dtxsid/"
+    And request batchdtxsid
+    When method POST
+    Then status 200
+    And match response == {dtxsid: '#present', isSafetyData: '#present', safetyUrl: '#present'}
