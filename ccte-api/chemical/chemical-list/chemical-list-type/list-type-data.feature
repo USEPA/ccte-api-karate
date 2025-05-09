@@ -1,5 +1,5 @@
 @regression
-@contracts
+@business
 @chemical
 @all
 Feature: Feature file for chemical list resource
