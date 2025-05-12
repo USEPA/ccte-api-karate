@@ -1,7 +1,7 @@
 @regression
 @contracts
-@all
 @hazard
+@all
 Feature: Feature file for validating the responses of the skin eye resource
 
   Background:
@@ -10,15 +10,15 @@ Feature: Feature file for validating the responses of the skin eye resource
     * header Content-Type = 'application/json; charset=utf-8'
     * header x-api-key = apikey
 
-  Scenario: Testing the GET method for skin eye data by dtxsid
+  Scenario: Validating the response of the GET method for skin eye data by dtxsid
     Given path '/hazard/skin-eye/search/by-dtxsid/DTXSID0021125'
     When method GET
     Then status 200
-    And match response[0] == {id: '#present', year: '#present', source: '#present', dtxsid: '#present', endpoint: '#present', classification: '#present', guideline: '#present', reliability: '#present', resultText: '#present', score: '#present', species: '#present', studyType: '#present', strain: '#present'}
+    And match response[0] == {id: '#present', authority: '#present', classification: '#present', dtxsid: '#present', endpoint: '#present', glp: '#present', guideline: '#present', recordUrl: '#present', reliability: '#present', resultText: '#present', score: '#present', skinEyeHash: '#present', skinEyeId: '#present', skinEyeUuid: '#present', source: '#present', species: '#present', strain: '#present', studyType: '#present', year: '#present'}
 
-  Scenario: Testing the POST method for skin eye data by batch dtxsid
+  Scenario: Validating the response of the POST method for skin eye data by batch dtxsid
     Given url ccte + "/hazard/skin-eye/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
-    And match response[0] == {id: '#present', year: '#present', source: '#present', dtxsid: '#present', endpoint: '#present', classification: '#present', guideline: '#present', reliability: '#present', resultText: '#present', score: '#present', species: '#present', studyType: '#present', strain: '#present'}
+    And match response[0] == {id: '#present', authority: '#present', classification: '#present', dtxsid: '#present', endpoint: '#present', glp: '#present', guideline: '#present', recordUrl: '#present', reliability: '#present', resultText: '#present', score: '#present', skinEyeHash: '#present', skinEyeId: '#present'
