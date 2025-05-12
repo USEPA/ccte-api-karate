@@ -54,7 +54,7 @@ Feature: Feature file for chemical details resource
 
   Scenario: Testing the GET method for ALL chemical details (projection = all-ids)
     Given path 'chemical/all'
-    And param projeciton = 'all-ids''
+    And param projeciton = 'all-ids'
     When method GET
     Then status 200
 
