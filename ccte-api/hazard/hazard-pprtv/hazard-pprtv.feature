@@ -9,6 +9,6 @@ Feature: Feature file for the PPRTV chemical resource
     * header x-api-key = apikey
 
   Scenario: Testing the GET method for PPRTV chemical data by dtxsid
-    Given path '/hazard/pprtv/search/by-dtxsid/DTXSID7020182'
+    Given path '/hazard/pprtv/search/by-dtxsid/DTXSID0023872'
     When method GET
     Then status 200
