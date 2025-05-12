@@ -1,7 +1,7 @@
 @smoke
 @hazard
 @all
-Feature: Feature file for hazard adme-ivive endpoints
+Feature: Feature file for the adme-ivive resource
   Background:
     * url ccte
     * header Accept = 'application/json' 
