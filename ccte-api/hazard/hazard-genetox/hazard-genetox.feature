@@ -1,6 +1,6 @@
 @smoke
-@all
 @hazard
+@all
 Feature: Feature file for genetox resource
 
   Background:
