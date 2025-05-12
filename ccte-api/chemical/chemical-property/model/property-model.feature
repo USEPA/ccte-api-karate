@@ -1,6 +1,6 @@
 @smoke
-@all
 @chemical
+@all
 Feature: Feature file for chemical property model endpoints
 
   Background:
@@ -21,7 +21,7 @@ Feature: Feature file for chemical property model endpoints
     When method GET
     Then status 200
 
-  Scenario: Testing the GET method for HTML strings of Model reports by dtxsid and modelId
+  Scenario: Testing the GET method for JSON strings of Model reports by dtxsid and modelId
     Given url ccte + "/chemical/property/model/reports/json/search/"
     And param dtxsid = 'DTXSID7020005'
     And param modelId = '1163'
