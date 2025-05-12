@@ -1,7 +1,7 @@
 @smoke
 @hazard
 @all
-Feature: Feature file for hazard PPRTV chemical resource
+Feature: Feature file for the PPRTV chemical resource
   Background:
     * url ccte
     * header Accept = 'application/json' 
