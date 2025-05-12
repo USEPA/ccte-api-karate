@@ -38,7 +38,7 @@ Feature: Feature file for validating the response of the exposure SEEMs resource
     Given path '/exposure/seem/general/search/by-dtxsid/DTXSID7020182'
     When method GET
     Then status 200 
-    And match response == {dtxsid : '#present', productionVolume : '#present', units : '#present', stockholmConvention : '#present', probabilityDietary : '#present', probabilityResidential : '#present', probabilityPesticde : '#present', probabilityIndustrial : '#present'}
+    And match response == [{dtxsid : '#present', productionVolume : '#present', units : '#present', stockholmConvention : '#present', probabilityDietary : '#present', probabilityResidential : '#present', probabilityPesticde : '#present', probabilityIndustrial : '#present'}]
 
   Scenario: Testing the POST method for seems general data by dtxsid
     Given url ccte + "/exposure/seem/general/search/by-dtxsid/"
