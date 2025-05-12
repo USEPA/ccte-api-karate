@@ -16,6 +16,12 @@ Feature: Feature file for exposure SEEMs resource
     When method GET
     Then status 200 
 
+  Scenario: Testing the POST method for seems demographic data by dtxsid
+    Given url ccte + "/exposure/seem/demographic/search/by-dtxsid/DTXSID7020182"
+    And request batchdtxsid
+    When method POST
+    Then status 200
+
   Scenario: Testing the GET method for seems demographic data by dtxsid
     Given path '/exposure/seem/demographic/search/by-dtxsid/DTXSID7020182'
     And param projection = 'ccd-demographic'
@@ -27,6 +33,12 @@ Feature: Feature file for exposure SEEMs resource
   Scenario: Testing the GET method for seems general data by dtxsid
     Given path '/exposure/seem/general/search/by-dtxsid/DTXSID7020182'
     When method GET
+    Then status 200 
+
+  Scenario: Testing the POST method for seems general data by dtxsid
+    Given url ccte + "/exposure/seem/general/search/by-dtxsid/DTXSID7020182"
+    And request batchdtxsid
+    When method POST
     Then status 200 
 
   Scenario: Testing the GET method for seems general data by dtxsid
