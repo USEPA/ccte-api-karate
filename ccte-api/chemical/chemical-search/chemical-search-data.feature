@@ -32,6 +32,7 @@ Feature: Feature file for validating the response of chemical search resource
     When method POST
     Then status 200
     And match response == [{"searchName": "CASRN", "rank": 5, "searchValue": "7439-97-6", "hasStructureImage": 1, "preferredName": "Mercury", "isMarkush": false, "dtxsid": "DTXSID1024172", "smiles": "[Hg]", "dtxcid": "DTXCID504172", "casrn": "7439-97-6"}, { "searchName": "Integrated Source CAS-RN", "searchValue": "7439-97-6", "rank": 17, "dtxsid": "DTXSID00872426", "dtxcid": null, "casrn": "NOCAS_872426", "preferredName": "Mercury & Mercury Compounds", "hasStructureImage": 0, "smiles": null, "isMarkush": true, "searchMsgs" : null, "suggestions" : null, "isDuplicate" : false}]
+
   ############ Start-with ############
 
   Scenario: Validating response data using the GET method for chemical search by starting value of chemical name
@@ -178,4 +179,4 @@ Feature: Feature file for validating the response of chemical search resource
     Given url ccte + "/chemical/search/start-with/1-Naphthalenesulfonic%20acid%2C%203-hydroxy-4-%5B%282-hydroxy-1-naphthalenyl%29azo%5D-%2C%20chromium%20complex"
     When method GET
     Then status 200
-    And match response[0] == {"hasStructureImage":1,"smiles":"[H+].[Na+].[Na+].[Cr+3].[O-]C1=C(N=NC2=C([O-])C=C(C3=C2C=CC=C3)S([O-])(=O)=O)C2=C(C=CC=C2)C=C1.[O-]C1=C(N=NC2=C([O-])C=C(C3=C2C=CC=C3)S([O-])(=O)=O)C2=C(C=CC=C2)C=C1","isMarkush":false,"searchName":"Synonym","searchValue":"1-Naphthalenesulfonic acid, 3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-, chromium complex","rank":15,"dtxsid":"DTXSID20904273","dtxcid":"DTXCID901333477","casrn":"12392-64-2","preferredName":"C.I. Acid Blue 193"}
+    And match response[0] == {hasStructureImage: 1, dtxsid: "DTXSID101014865", dtxcid: "DTXCID701508626", casrn: "27425-58-7", preferredName: "Chromate(2-), [3-(hydroxy-κappaO)-4-[2-[2-(hydroxy-κappaO)-1-naphthalenyl]diazenyl-κappaN1]-1-naphthalenesulfonato(3-)][1-[[2-(hydroxy-κappaO)-5-[2-(2-methoxyphenyl)diazenyl]phenyl]diazenyl-κappaN1]-2-naphthalenolato(2-)-κappaO]-, sodium (1:2)", smiles: "[Na+].[Na+].[Cr+3].[O-]C1=CC=C2C=CC=CC2=C1N=NC1=C2C=CC=CC2=C(C=C1[O-])S([O-])(=O)=O.COC1=C(C=CC=C1)N=NC1=CC=C([O-])C(=C1)N=NC1=C2C=CC=CC2=CC=C1[O-]", isMarkush: false, searchName: "Synonym", searchValue: "1-Naphthalenesulfonic acid, 3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-, chromium complex", rank: 15}
