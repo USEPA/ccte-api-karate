@@ -1,7 +1,7 @@
 @smoke
 @exposure
 @all
-Feature: Feature file for exposure SEEMs data
+Feature: Feature file for exposure SEEMs resource
 
   Background:
     * url ccte
