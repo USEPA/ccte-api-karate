@@ -1,7 +1,7 @@
 @smoke
 @hazard
 @all
-Feature: Feature file for hazard hawc endpoints
+Feature: Feature file for hazard HAWC resource
   Background:
     * url ccte
     * header Accept = 'application/json' 
