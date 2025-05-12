@@ -2,7 +2,7 @@
 @contracts
 @hazard
 @all
-Feature: Feature file for validating the response of the adme-ivive resource
+Feature: Feature file for validating the response of the ADME-IVIVE resource
   Background:
     * url ccte
     * header Accept = 'application/json' 
