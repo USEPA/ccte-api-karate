@@ -17,7 +17,7 @@ Feature: Feature file for exposure SEEMs resource
     Then status 200 
 
   Scenario: Testing the POST method for seems demographic data by dtxsid
-    Given url ccte + "/exposure/seem/demographic/search/by-dtxsid/DTXSID7020182"
+    Given url ccte + "/exposure/seem/demographic/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
@@ -36,7 +36,7 @@ Feature: Feature file for exposure SEEMs resource
     Then status 200 
 
   Scenario: Testing the POST method for seems general data by dtxsid
-    Given url ccte + "/exposure/seem/general/search/by-dtxsid/DTXSID7020182"
+    Given url ccte + "/exposure/seem/general/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200 
