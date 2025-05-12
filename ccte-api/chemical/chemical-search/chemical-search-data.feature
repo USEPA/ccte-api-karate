@@ -26,6 +26,12 @@ Feature: Feature file for validating the response of chemical search resource
     Then status 200
     And match response[0] contains {"dtxsid": null}
 
+  Scenario: Testing the POST method for search exact match by batch (should return 2 records)
+    Given url ccte + "/chemical/search/equal/"
+    And request '7439-97-6'
+    When method POST
+    Then status 200
+    And match response == [{"searchName": "CASRN", "rank": 5, "searchValue": "7439-97-6", "hasStructureImage": 1, "preferredName": "Mercury", "isMarkush": false, "dtxsid": "DTXSID1024172", "smiles": "[Hg]", "dtxcid": "DTXCID504172", "casrn": "7439-97-6"}, { "searchName": "Integrated Source CAS-RN", "searchValue": "7439-97-6", "rank": 17, "dtxsid": "DTXSID00872426", "dtxcid": null, "casrn": "NOCAS_872426", "preferredName": "Mercury & Mercury Compounds", "hasStructureImage": 0, "smiles": null, "isMarkush": true, "searchMsgs" : null, "suggestions" : null, "isDuplicate" : false}]
   ############ Start-with ############
 
   Scenario: Validating response data using the GET method for chemical search by starting value of chemical name
