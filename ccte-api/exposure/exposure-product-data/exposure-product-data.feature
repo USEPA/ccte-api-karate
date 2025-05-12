@@ -1,6 +1,6 @@
 @smoke
-@all
 @exposure
+@all
 Feature: Feature file for exposure product data resource
 
   Background:
@@ -14,13 +14,13 @@ Feature: Feature file for exposure product data resource
     When method GET
     Then status 200
 
+  Scenario: Testing the POST method for product data by dtxsids
+    Given url ccte + "/exposure/product-data/search/by-dtxsid/"
+    And request batchdtxsid
+    When method POST
+    Then status 200
+
   Scenario: Testing the GET method for product data resource puc
     Given path '/exposure/product-data/puc'
     When method GET
-    Then status 200
-
-  Scenario: Testing the POST method for product data by dtxsids
-    Given url ccte + "/exposure/product-data/search/by-dtxsid/"
-    And request ["DTXSID7020182","DTXSID9020112"]
-    When method POST
     Then status 200
