@@ -1,6 +1,6 @@
 @smoke
-@all
 @exposure
+@all
 Feature: Feature file for CCD exposure resources
 
   Background:
