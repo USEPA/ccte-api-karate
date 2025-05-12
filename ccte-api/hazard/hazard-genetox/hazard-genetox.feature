@@ -8,7 +8,9 @@ Feature: Feature file for genetox resource
     * header Accept = 'application/json' 
     * header Content-Type = 'application/json; charset=utf-8'
     * header x-api-key = apikey
-
+    
+  ############ Summary ############
+  
   Scenario: Testing the GET method for genetox summary data by dtxsid
     Given path '/hazard/genetox/summary/search/by-dtxsid/DTXSID0021125'
     When method GET
@@ -19,7 +21,9 @@ Feature: Feature file for genetox resource
     And request batchdtxsid
     When method POST
     Then status 200
-    
+
+  ############ Detail ############
+  
   Scenario: Testing the GET method for genetox detail data by dtxsid
     Given path '/hazard/genetox/details/search/by-dtxsid/DTXSID0021125'
     When method GET
