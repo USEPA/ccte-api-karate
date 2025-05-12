@@ -1,6 +1,6 @@
 @smoke
-@all
 @hazard
+@all
 Feature: Feature file for hazard toxvaldb endpoints
   Background:
     * url ccte
@@ -15,6 +15,6 @@ Feature: Feature file for hazard toxvaldb endpoints
 
   Scenario: Testing the POST method for toxval by batch dtxsids
     Given url ccte + "/hazard/toxval/search/by-dtxsid/"
-    And request ["DTXSID7020182","DTXSID9020112"]
+    And request batchdtxsid
     When method POST
     Then status 200
