@@ -16,7 +16,7 @@ Feature: Feature file for exposure functional use resource
 
   Scenario: Testing the POST method for functional use resource exposure data by dtxsid
     Given url ccte + "/exposure/functional-use/search/by-dtxsid/"
-    And request ["DTXSID7020182","DTXSID9020112"]
+    And request batchdtxsid
     When method POST
     Then status 200
     
