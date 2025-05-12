@@ -1,7 +1,7 @@
 @regression
 @contracts
-@all
 @hazard
+@all
 Feature: Feature file for validating the responses of the cancer summary resource
 
   Background:
