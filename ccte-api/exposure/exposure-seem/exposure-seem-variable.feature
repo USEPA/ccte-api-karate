@@ -19,7 +19,7 @@ Feature: Feature file for validating the response of the exposure SEEMs resource
     And match response[0] == {id : '#present', dtxsid : '#present', demographic : '#present', predictor : '#present', median : '#present', medianText : '#present', l95 : '#present', l95Text : '#present', u95 : '#present', u95Text : '#present', units : '#present', ad : '#present', reference : '#present'} 
 
   Scenario: Testing the POST method for seems demographic data by dtxsid
-    Given url ccte + "/exposure/seem/demographic/search/by-dtxsid/DTXSID7020182"
+    Given url ccte + "/exposure/seem/demographic/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
@@ -41,7 +41,7 @@ Feature: Feature file for validating the response of the exposure SEEMs resource
     And match response == {dtxsid : '#present', productionVolume : '#present', units : '#present', stockholmConvention : '#present', probabilityDietary : '#present', probabilityResidential : '#present', probabilityPesticde : '#present', probabilityIndustrial : '#present'}
 
   Scenario: Testing the POST method for seems general data by dtxsid
-    Given url ccte + "/exposure/seem/general/search/by-dtxsid/DTXSID7020182"
+    Given url ccte + "/exposure/seem/general/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200 
