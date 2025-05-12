@@ -16,7 +16,7 @@ Feature: Feature file for validating the responses of the genetox resource
     Given path '/hazard/genetox/summary/search/by-dtxsid/DTXSID0021125'
     When method GET
     Then status 200
-    And match response == {id: '#present', ames: '#present', clowderDocId: '#present', dtxsid: '#present', genetoxCall: '#present', genetoxSummaryId: '#present', micronucleus: '#present', reportsNegative: '#present', reportsOther: '#present', reportsPositive: '#present'}
+    And match response == [{id: '#present', ames: '#present', clowderDocId: '#present', dtxsid: '#present', genetoxCall: '#present', genetoxSummaryId: '#present', micronucleus: '#present', reportsNegative: '#present', reportsOther: '#present', reportsPositive: '#present'}]
 
   Scenario: Validating the response of the POST method for genetox summary data by batch dtxsid
     Given url ccte + "/hazard/genetox/summary/search/by-dtxsid/"
