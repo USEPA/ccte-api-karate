@@ -2,7 +2,7 @@
 @business
 @chemical
 @all
-Feature: Feature file for chemical list resource
+Feature: Feature file for validating the response of the chemical list resource
 
   Background:
     * url ccte
