@@ -10,7 +10,7 @@ Feature: Feature file for validating the response of the HAWC resource
     * header x-api-key = apikey
 
   Scenario: Validating the response of the GET method for HAWC data by dtxsid
-    Given path '/hazard/hawc/search/by-dtxsid/DTXSID7020182'
+    Given path '/hazard/hawc/search/by-dtxsid/DTXSID4023886'
     When method GET
     Then status 200
     And match response[0] == {id: '#present', name: '#present', year: '#present', dtxsid: '#present', ccdUrl: '#present', hawcUrl: '#present'}
