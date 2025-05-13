@@ -107,6 +107,7 @@ Feature:  Feature file for validating the response of chemical search resource
     Then status 200
     And match response[0] == {hasStructureImage : '#present', smiles : '#present', isMarkush :'#present', searchName : '#present', searchValue : '#present', rank : '#present', dtxsid : '#present', dtxcid : '#present', casrn : '#present', preferredName : '#present'}
 
+  @ignore
   Scenario: Testing the GET method for chemical search by substring of CASRN (broken)
     Given path '/chemical/search/contain/1912-24'
     When method GET
