@@ -1,4 +1,6 @@
 @smoke
+@chemical
+@all
 Feature: Feature file for chemical search resource
 
   Background:
