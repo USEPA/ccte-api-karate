@@ -13,4 +13,4 @@ Feature: Feature file for validating the response of the HAWC resource
     Given path '/hazard/hawc/search/by-dtxsid/DTXSID7020182'
     When method GET
     Then status 200
-    And match response[0] == {assessmentId: '#present', dtxsid: '#present', ccdUrl: '#present', hawcLink: '#present'}
+    And match response[0] == {id: '#present', name: '#present', year: '#present', dtxsid: '#present', ccdUrl: '#present', hawcUrl: '#present'}
