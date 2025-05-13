@@ -1,5 +1,5 @@
 @regression
-@contracts
+@business
 @chemical
 @all
 Feature: Feature file for validating the response of the chemical property model endpoints
