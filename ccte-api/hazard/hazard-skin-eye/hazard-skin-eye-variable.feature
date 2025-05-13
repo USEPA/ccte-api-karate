@@ -21,4 +21,4 @@ Feature: Feature file for validating the responses of the skin eye resource
     And request batchdtxsid
     When method POST
     Then status 200
-    And match response[0] == {id: '#present', authority: '#present', classification: '#present', dtxsid: '#present', endpoint: '#present', glp: '#present', guideline: '#present', recordUrl: '#present', reliability: '#present', resultText: '#present', score: '#present', skinEyeHash: '#present', skinEyeId: '#present'
+    And match response[0] == {id: '#present', authority: '#present', classification: '#present', dtxsid: '#present', endpoint: '#present', glp: '#present', guideline: '#present', recordUrl: '#present', reliability: '#present', resultText: '#present', score: '#present', skinEyeHash: '#present', skinEyeId: '#present', skinEyeUuid: '#present', source: '#present', species: '#present', strain: '#present', studyType: '#present', year: '#present'}
