@@ -76,6 +76,13 @@ Feature: Feature file to validate responses of bioactivity assay annotation reso
     Then status 200
     And match response[0] == {geneSymbol: '#present', assayComponentEndpointName: '#present', assayComponentEndpointDesc: '#present', multiConcActives: '#present', singleConcActive: '#present'}
 
+  Scenario: Validating the response of the GET method for array of dtxsids by aeid (projection = ccdassaydetails)
+    Given path '/bioactivity/assay/chemicals/search/by-aeid/3032'
+    And param projection = 'ccdassaydetails'
+    When method GET
+    Then status 200
+    And match response[0] == {"preferredName": '#present', "dtxsid": '#present', "qcLevel": '#present', "averageMass": '#present', "hitc": '#present', "casrn": '#present', "cpdataCount": '#present', "molFormula": '#present', "monoisotopicMass": '#present', "percentAssays": '#present', "pubchemCount": '#present', "pubmedCount": '#present', "stereo": '#present', "sourcesCount": '#present', "qcLevelDesc": '#present', "isotope": '#present', "multicomponent": '#present', "totalAssays": '#present', "pubchemCid": '#present', "relatedSubstanceCount": '#present', "compoundId": '#present', "genericSubstanceId": '#present', "activeAssays": '#present', "relatedStructureCount": '#present', "hasStructureImage": '#present', "iupacName": '#present', "smiles": '#present', "inchiString": '#present', "inchikey": '#present', "qcNotes": '#present', "qsarReadySmiles": '#present', "msReadySmiles": '#present', "irisLink": '#present', "pprtvLink": '#present', "wikipediaArticle": '#present', "isMarkush": '#present', "dtxcid": '#present', "toxcastSelect": '#present', "top": '#present', "scaledTop": '#present', "ac50": '#present', "logAc50": '#present', "hitCall": '#present'}
+    
   Scenario: Validating the response of the GET method for assay single-conc data by aeid 
     Given path '/bioactivity/assay/single-conc/search/by-aeid/3032'
     When method GET
