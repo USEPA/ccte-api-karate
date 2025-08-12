@@ -70,6 +70,17 @@ Feature: Feature file for bioactivity resource
     When method GET
     Then status 200
 
+  Scenario: Testing the GET method for bioactivity aed data  by dtxsid
+    Given path '/bioactivity/data/aed/search/by-dtxsid/DTXSID5021209'
+    When method GET
+    Then status 200
+
+  Scenario: Testing the GET method for bioactivity aed data by batch dtxsid
+    Given url ccte + "/bioactivity/data/aed/search/by-dtxsid"
+    And request ["DTXSID7020182","DTXSID9020112"]
+    When method POST
+    Then status 200
+
   @ignore
   Scenario: Testing the POST method for bioactivity data summary by batch
     Given url ccte + "/bioactivity/data/summary/batchsearch/"
