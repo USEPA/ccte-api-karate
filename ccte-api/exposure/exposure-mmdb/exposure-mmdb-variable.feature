@@ -17,7 +17,8 @@ Feature: Feature file for validating the response of the exposure MMDB resource
     And match response[0] == {id: '#present', fullSourceName: '#present', chemicalName: '#present', dtxsid: '#present', preferredName: '#present', casrn: '#present', result: '#present', units: '#present', cleanedUnits: '#present', statistic: '#present', sampleSize: '#present', lod: '#present', loq: '#present', numDetects: '#present', numNonDetects: '#present', rateDetects: '#present', detected: '#present', detectedConflict: '#present', notesDetects: '#present', species: '#present', media: '#present', harmonizedMedium: '#present', population: '#present', subPopulation: '#present', collectionActivityId: '#present', dates: '#present', years: '#present', location: '#present', stateOrProvince: '#present', county: '#present', country: '#present', qualityFlag: '#present', link: '#present', reference: '#present', version: '#present', exportDate: '#present', casnumber: '#present'}
 
   Scenario: Validating the response of the GET method for harmonized aggregate records by medium
-    Given path '/exposure/mmdb/aggregate/by-medium/groundwater'
+    Given path '/exposure/mmdb/aggregate/by-medium'
+    And param medium = 'groundwater'
     And param pageNumber = '1'
     When method GET
     Then status 200
@@ -30,7 +31,8 @@ Feature: Feature file for validating the response of the exposure MMDB resource
     And match response[0] == {id: '#present', fullSourceName: '#present', chemicalName: '#present', dtxsid: '#present', preferredName: '#present', casrn: '#present', result: '#present', units: '#present', cleanedUnits: '#present', lod: '#present', loq: '#present', detectionFlag: '#present', resultFlag: '#present', detected: '#present', detectedConflict: '#present', notesDetects: '#present', species: '#present', media: '#present', harmonizedMedium: '#present', method: '#present', collectionActivityId: '#present', sampleId: '#present', mmdbSampleId: '#present', dates: '#present', year: '#present', month: '#present', time: '#present', location: '#present', stateOrProvince: '#present', county: '#present', country: '#present', qualityFlag: '#present', link: '#present', reference: '#present', version: '#present', exportDate: '#present', casnumber: '#present'}
 
   Scenario: Validating the response of the GET method for harmonized single-sample records by medium
-    Given path '/exposure/mmdb/single-sample/by-medium/groundwater'
+    Given path '/exposure/mmdb/single-sample/by-medium'
+    And param medium = 'groundwater'
     And param pageNumber = '1'
     When method GET
     Then status 200
