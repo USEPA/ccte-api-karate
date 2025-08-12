@@ -75,6 +75,19 @@ Feature: Feature file for validating responses of bioactivity data resource
     When method GET
     Then status 200
     And match response == {aeid: '#present', activeMc: '#present', totalMc: '#present', activeSc: '#present', totalSc: '#present'}
+
+  Scenario: Validating the response of the GET method for bioactivity aed data  by dtxsid
+    Given path '/bioactivity/data/aed/search/by-dtxsid/DTXSID5021209'
+    When method GET
+    Then status 200
+    And match response[0] ==   {dtxsid: '#present', preferredName: '#present', aeid: '#present', aenm: '#present', aedVal: '#present', aedType: '#present', httkModel: '#present', aedValUnit: '#present', httkVersion: '#present', potencyValType: '#present', invitrodbVersion: '#present', interindividualVarPerc: '#present'}
+
+  Scenario: Validating the response of the POST method for bioactivity aed data by batch dtxsid
+    Given url ccte + "/bioactivity/data/aed/search/by-dtxsid"
+    And request ["DTXSID7020182","DTXSID9020112"]
+    When method POST
+    Then status 200
+    And match response[0] ==   {dtxsid: '#present', preferredName: '#present', aeid: '#present', aenm: '#present', aedVal: '#present', aedType: '#present', httkModel: '#present', aedValUnit: '#present', httkVersion: '#present', potencyValType: '#present', invitrodbVersion: '#present', interindividualVarPerc: '#present'}
     
   Scenario: Validating the response of the GET method for bioactivity data summary by dtxsid
     Given path '/bioactivity/data/summary/search/by-dtxsid/DTXSID9026974'
