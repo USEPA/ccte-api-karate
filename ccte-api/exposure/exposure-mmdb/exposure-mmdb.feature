@@ -15,7 +15,8 @@ Feature: Feature file for exposure MMDB resource
     Then status 200
 
   Scenario: Testing the GET method for harmonized aggregate records by medium
-    Given path '/exposure/mmdb/aggregate/by-medium/groundwater'
+    Given path '/exposure/mmdb/aggregate/by-medium'
+    And param medium = 'groundwater'
     And param pageNumber = '1'
     When method GET
     Then status 200
@@ -26,7 +27,8 @@ Feature: Feature file for exposure MMDB resource
     Then status 200
 
   Scenario: Testing the GET method for harmonized single-sample records by medium
-    Given path '/exposure/mmdb/single-sample/by-medium/groundwater'
+    Given path '/exposure/mmdb/single-sample/by-medium'
+    And param medium = 'groundwater'
     And param pageNumber = '1'
     When method GET
     Then status 200
