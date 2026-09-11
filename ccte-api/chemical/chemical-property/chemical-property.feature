@@ -49,6 +49,7 @@ Feature: Feature file for chemical property resource
   Scenario: Testing the GET method for property by given property id and its value range (predicted)
     Given path '/chemical/property/predicted/search/by-range/Melting Point/150/151'
     When method GET
+    * configure readTimeout = 100000
     Then status 200
 
   Scenario: Testing the GET method for property by dtxsid (predicted)

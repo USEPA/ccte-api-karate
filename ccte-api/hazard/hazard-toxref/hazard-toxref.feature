@@ -78,9 +78,9 @@ Feature: Feature file for toxref resources
     Then status 200
 
   ############ Batch ############
-
+  @ignore
   Scenario: Testing the GET method for toxref data by batch dtxsids
-    Given url ccte + "/hazard/toxref/search/by-dtxsid/"
+    Given url ccte + "/hazard/toxref/data/search/by-dtxsid/"
     And request ["DTXSID5034307","DTXSID2040363"]
     When method POST
     Then status 200

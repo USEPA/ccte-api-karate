@@ -9,6 +9,11 @@ Feature: Feature file for validating the response of chemical property resource
     * header Accept = 'application/json' 
     * header Content-Type = 'application/json; charset=utf-8'
     * header x-api-key = apikey
+    * def propertySchema = {propValueOriginal: '#present', propValue: '#present', id: '#present', dtxsid: '#present', dtxcid: '#present', smiles: '#present', propName: '#present', dataset: '#present', propUnit: '#present', propValueId: '#present', propValueText: '#present', expDetailsTemperatureC: '#present', expDetailsPressureMmhg: '#present', expDetailsPh: '#present', expDetailsResponseSite: '#present', expDetailsSpeciesLatin: '#present', expDetailsSpeciesCommon: '#present', expDetailsSpeciesSupercategory: '#present', sourceName: '#present', sourceDescription: '#present', publicSourceName: '#present', publicSourceDescription: '#present', publicSourceUrl: '#present', directUrl: '#present', lsName: '#present', lsCitation: '#present', lsDoi: '#present', briefCitation: '#present', publicSourceOriginalName: '#present', publicSourceOriginalDescription: '#present', publicSourceOriginalUrl: '#present'}
+    * def propertySummarySchema = {propName: '#present', unit: '#present', experimentalCount: "#present", experimentalAverage: '#present', experimentalMedian: '#present', experimentalMin: '#present', experimentalMax: "#present", predictedCount: "#present", predictedAverage: '#present', predictedMedian: '#present', predictedMin: '#present', predictedMax: '#present'}
+    * def predictedFateSchema = read('fate-schema.json')
+    * def experimentalFateSchema = read('fate-schema.json')
+    * def fateSchema = {propName: '#present', predictedFateData: "##notnull", experimentalFateData: "##notnull"}
 
   Scenario: Validating the response of the GET method for property ids by type (experimental)
     Given path '/chemical/property/experimental/name'
@@ -20,33 +25,33 @@ Feature: Feature file for validating the response of chemical property resource
     Given path '/chemical/property/experimental/search/by-range/Melting Point/150/151'
     When method GET
     Then status 200
-    And match response[0] == {propValueOriginal: '#present', propValue: '#present', id: '#present', dtxsid: '#present', dtxcid: '#present', smiles: '#present', propName: '#present', dataset: '#present', propUnit: '#present', propValueId: '#present', propValueText: '#present', expDetailsTemperatureC: '#present', expDetailsPressureMmhg: '#present', expDetailsPh: '#present', expDetailsResponseSite: '#present', expDetailsSpeciesLatin: '#present', expDetailsSpeciesCommon: '#present', expDetailsSpeciesSupercategory: '#present', sourceName: '#present', sourceDescription: '#present', publicSourceName: '#present', publicSourceDescription: '#present', publicSourceUrl: '#present', directUrl: '#present', lsName: '#present', lsCitation: '#present', lsDoi: '#present', briefCitation: '#present', publicSourceOriginalName: '#present', publicSourceOriginalDescription: '#present', publicSourceOriginalUrl: '#present'}
+    And match response[0] == propertySchema
 
   Scenario: Validating the response of the GET method for property by dtxsid (experimental)
     Given path '/chemical/property/experimental/search/by-dtxsid/DTXSID7020182'
     When method GET
     Then status 200
-    And match response[0] == {propValueOriginal: '#present', propValue: '#present', id: '#present', dtxsid: '#present', dtxcid: '#present', smiles: '#present', propName: '#present', dataset: '#present', propUnit: '#present', propValueId: '#present', propValueText: '#present', expDetailsTemperatureC: '#present', expDetailsPressureMmhg: '#present', expDetailsPh: '#present', expDetailsResponseSite: '#present', expDetailsSpeciesLatin: '#present', expDetailsSpeciesCommon: '#present', expDetailsSpeciesSupercategory: '#present', sourceName: '#present', sourceDescription: '#present', publicSourceName: '#present', publicSourceDescription: '#present', publicSourceUrl: '#present', directUrl: '#present', lsName: '#present', lsCitation: '#present', lsDoi: '#present', briefCitation: '#present', publicSourceOriginalName: '#present', publicSourceOriginalDescription: '#present', publicSourceOriginalUrl: '#present'}
+    And match response[0] == propertySchema
 
   Scenario: Validating the response of the POST method for chemical properties by batch dtxsid (experimental)
     Given url ccte + "/chemical/property/experimental/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
-    And match response[0] == {propValueOriginal: '#present', propValue: '#present', id: '#present', dtxsid: '#present', dtxcid: '#present', smiles: '#present', propName: '#present', dataset: '#present', propUnit: '#present', propValueId: '#present', propValueText: '#present', expDetailsTemperatureC: '#present', expDetailsPressureMmhg: '#present', expDetailsPh: '#present', expDetailsResponseSite: '#present', expDetailsSpeciesLatin: '#present', expDetailsSpeciesCommon: '#present', expDetailsSpeciesSupercategory: '#present', sourceName: '#present', sourceDescription: '#present', publicSourceName: '#present', publicSourceDescription: '#present', publicSourceUrl: '#present', directUrl: '#present', lsName: '#present', lsCitation: '#present', lsDoi: '#present', briefCitation: '#present', publicSourceOriginalName: '#present', publicSourceOriginalDescription: '#present', publicSourceOriginalUrl: '#present'}
+    And match response[0] == propertySchema
 
   Scenario: Validating the response of the GET method for chemical properties by dtxsid (fate)
     Given path '/chemical/fate/search/by-dtxsid/DTXSID7020182'
     When method GET
     Then status 200
-    And match response[0] == {propValueOriginal: '#present', propValue: '#present', id: '#present', dtxsid: '#present', dtxcid: '#present', smiles: '#present', propName: '#present', dataset: '#present', propUnit: '#present', propValueId: '#present', propValueText: '#present', expDetailsTemperatureC: '#present', expDetailsPressureMmhg: '#present', expDetailsPh: '#present', expDetailsResponseSite: '#present', expDetailsSpeciesLatin: '#present', expDetailsSpeciesCommon: '#present', expDetailsSpeciesSupercategory: '#present', sourceName: '#present', sourceDescription: '#present', publicSourceName: '#present', publicSourceDescription: '#present', publicSourceUrl: '#present', directUrl: '#present', lsName: '#present', lsCitation: '#present', lsDoi: '#present', briefCitation: '#present', publicSourceOriginalName: '#present', publicSourceOriginalDescription: '#present', publicSourceOriginalUrl: '#present'}
+    And match response[0] == fateSchema
 
   Scenario: Validating the response of the POST method for chemical properties by batch dtxsid (fate)
     Given url ccte + "/chemical/fate/search/by-dtxsid/"
     And request batchdtxsid
     When method POST
     Then status 200
-    And match response[0] == {propValueOriginal: '#present', propValue: '#present', id: '#present', dtxsid: '#present', dtxcid: '#present', smiles: '#present', propName: '#present', dataset: '#present', propUnit: '#present', propValueId: '#present', propValueText: '#present', expDetailsTemperatureC: '#present', expDetailsPressureMmhg: '#present', expDetailsPh: '#present', expDetailsResponseSite: '#present', expDetailsSpeciesLatin: '#present', expDetailsSpeciesCommon: '#present', expDetailsSpeciesSupercategory: '#present', sourceName: '#present', sourceDescription: '#present', publicSourceName: '#present', publicSourceDescription: '#present', publicSourceUrl: '#present', directUrl: '#present', lsName: '#present', lsCitation: '#present', lsDoi: '#present', briefCitation: '#present', publicSourceOriginalName: '#present', publicSourceOriginalDescription: '#present', publicSourceOriginalUrl: '#present'}
+    And match response[0].properties[0] == fateSchema
 
   Scenario: Validating the response of the GET method for property ids by type (predicted)
     Given path '/chemical/property/predicted/name'
@@ -77,7 +82,7 @@ Feature: Feature file for validating the response of chemical property resource
     Given path '/chemical/property/summary/search/by-dtxsid/DTXSID7020182'
     When method GET
     Then status 200
-    And match response[0] == {propName: '#present', unit: '#present', experimentalAverage: '#present', experimentalMedian: '#present', experimentalRange: '#present', predictedAverage: '#present', predictedMedian: '#present', predictedRange: '#present'}
+    And match response[0] == propertySummarySchema
 
   Scenario: Validating the response of the GET method for property by dtxsid and property name (summary)
     Given url ccte + "/chemical/property/summary/search/"
@@ -85,4 +90,4 @@ Feature: Feature file for validating the response of chemical property resource
     And param propName = 'Density'
     When method GET
     Then status 200
-    And match response[0] == {propName: '#present', unit: '#present', experimentalAverage: '#present', experimentalMedian: '#present', experimentalRange: '#present', predictedAverage: '#present', predictedMedian: '#present', predictedRange: '#present'}
+    And match response[0] == propertySummarySchema

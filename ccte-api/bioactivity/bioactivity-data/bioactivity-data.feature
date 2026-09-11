@@ -76,7 +76,7 @@ Feature: Feature file for bioactivity resource
     Then status 200
 
   Scenario: Testing the POST method for bioactivity aed data by batch dtxsid
-    Given url ccte + "/bioactivity/data/aed/search/by-dtxsid"
+    Given url ccte + "/bioactivity/data/aed/search/by-dtxsid/"
     And request ["DTXSID7020182","DTXSID9020112"]
     When method POST
     Then status 200
