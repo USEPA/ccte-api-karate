@@ -35,6 +35,8 @@ Feature: Feature file for validating the response of the chemical list resource
     And match each response == chemicalListWithDtxsidsSchema
 
   Scenario: Validating response of the GET method for all public lists that contain dtxsids (projection = chemicallistwithdtxsids)
+    # this is a LOT of data so we increased the read timeout accordingly
+    * configure readTimeout = 120000
     Given url ccte + "/chemical/list/all"
     And param projection = 'chemicallistwithdtxsids'
     When method GET
