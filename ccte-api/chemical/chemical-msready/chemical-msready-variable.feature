@@ -29,7 +29,7 @@ Feature: Feature file for validating the responses of the chemical search resour
     And request {masses: [11.2, 33.1]}
     When method POST
     Then status 400
-    And match response == {"type": "about:blank", "title": "Constraint Violations", "status": 400, "instance": "/chemical/msready/search/by-mass/", "violations": {"error": "error value couldn't be null"}}
+    And match response == {"type": "about:blank", "title": "Constraint Violations", "status": 400, "instance": "/chemical/msready/search/by-mass/", "violations": {"error": "error value can't be null"}}
 
   Scenario: Validate response for the POST method of ms-ready chemical using mass range (missing batch range)
     Given url ccte + "/chemical/msready/search/by-mass/"
@@ -37,7 +37,7 @@ Feature: Feature file for validating the responses of the chemical search resour
     And request {error: '1'}
     When method POST
     Then status 400
-    And match response == {"type": "about:blank", "title": "Constraint Violations", "status": 400, "instance": "/chemical/msready/search/by-mass/", "violations": {"masses": "Array of Masses couldn't be empty"}}
+    And match response == {"type": "about:blank", "title": "Constraint Violations", "status": 400, "instance": "/chemical/msready/search/by-mass/", "violations": {"masses": "masses can't be empty"}}
 
   Scenario: Validating the response of the GET method for ms ready chemical by formula
     Given path '/chemical/msready/search/by-formula/C16H24N2O5S'
