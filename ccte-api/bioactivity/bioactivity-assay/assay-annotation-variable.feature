@@ -33,7 +33,7 @@ Feature: Feature file to validate responses of bioactivity assay annotation reso
     And param projection = 'ccd-assay-gene'
     When method GET
     Then status 200
-    And match response == [{entrezGeneId: '#present', geneName: '#present', geneSymbol: '#present'}]
+    And match response == [{entrezGeneId: '#present', geneName: '#present', officialSymbol: "#present", geneSymbol: '##notnull'}]
 
   Scenario: Validating the response of the GET method for assay data by aeid (projection ccd-assay-citations)
     Given path '/bioactivity/assay/search/by-aeid/3032'
@@ -61,7 +61,7 @@ Feature: Feature file to validate responses of bioactivity assay annotation reso
     And param projection = 'ccd-assay-aop'
     When method GET
     Then status 200
-    And match response[0] == {toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}
+    And match response[0] == {id: '#present', toxcastAeid: '#present', entrezGeneId: '#present', eventNumber: '#present', eventLink: '#present', aopNumber: '#present', aopLink: '#present'}
 
   Scenario: Validating the response of the GET method for assay data by aeid (projection = assay-all)
     Given path '/bioactivity/assay/search/by-aeid/3032'
@@ -74,7 +74,7 @@ Feature: Feature file to validate responses of bioactivity assay annotation reso
     Given path '/bioactivity/assay/search/by-gene/TUBA1A'
     When method GET
     Then status 200
-    And match response[0] == {geneSymbol: '#present', assayComponentEndpointName: '#present', assayComponentEndpointDesc: '#present', multiConcActives: '#present', singleConcActive: '#present'}
+    And match response[0] == {aeid: "#present", officialSymbol: "#present", geneSymbol: '##notnull', assayComponentEndpointName: '#present', assayComponentEndpointDesc: '#present', multiConcActives: '#present', singleConcActive: '#present'}
 
   Scenario: Validating the response of the GET method for array of dtxsids by aeid (projection = ccdassaydetails)
     Given path '/bioactivity/assay/chemicals/search/by-aeid/3032'

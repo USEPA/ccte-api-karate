@@ -96,6 +96,8 @@ Feature: Feature file for validating the response of the toxref resources
 
   ############ Batch ############
 
+  @ignore
+  # there is no batch/POST endpoint support for searching toxref data by dtxsid
   Scenario: Validating the response of the GET method for toxref data by batch dtxsids
     Given url ccte + "/hazard/toxref/search/by-dtxsid/"
     And request ["DTXSID5034307","DTXSID2040363"]
