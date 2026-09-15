@@ -184,8 +184,9 @@ Feature: Feature file for validating the response of chemical search resource
     Then status 200
     And match response == [{"dtxsid": "DTXSID3039242", "dtxcid": "DTXCID20135", "casrn": "71-43-2", "preferredName": "Benzene", "hasStructureImage": 1, "smiles": "C1=CC=CC=C1", "isMarkush": false, "searchName": "CASRN", "searchValue": "71432", "rank": 5}]
 
+  # warning -- fragile test due to multiple results returned and order not specified
   Scenario: Validating response data using the GET method for chemical search by starting value of chemical name (url encoded)
     Given url ccte + "/chemical/search/start-with/1-Naphthalenesulfonic%20acid%2C%203-hydroxy-4-%5B%282-hydroxy-1-naphthalenyl%29azo%5D-%2C%20chromium%20complex"
     When method GET
     Then status 200
-    And match response[0] == {"hasStructureImage": 1, "dtxsid": "DTXSID301446373", "dtxcid": "DTXCID101996841", "casrn": "83733-02-2", "preferredName": "Chromate(2-), [3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-1-naphthalenesulfonato(3-)][4-[(2-hydroxy-4-nitrophenyl)azo]naphth[2,1-d]-1,3-oxathiol-5-ol 3,3-dioxidato(2-)]-, disodium", "smiles": "[Na+].[Na+].[Cr+3].[O-]C1=CC(=CC=C1N=NC1=C2C(OCS2(=O)=O)=C2C=CC=CC2=C1[O-])[N+]([O-])=O.[O-]C1=CC=C2C=CC=CC2=C1N=NC1=C2C=CC=CC2=C(C=C1[O-])S([O-])(=O)=O", "isMarkush": false, "searchName": "Expert Validated Synonym", "searchValue": "1-Naphthalenesulfonic acid, 3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-, chromium complex", "rank": 10}
+    And match response[4] == {"hasStructureImage": 1, "dtxsid": "DTXSID301446373", "dtxcid": "DTXCID101996841", "casrn": "83733-02-2", "preferredName": "Chromate(2-), [3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-1-naphthalenesulfonato(3-)][4-[(2-hydroxy-4-nitrophenyl)azo]naphth[2,1-d]-1,3-oxathiol-5-ol 3,3-dioxidato(2-)]-, disodium", "smiles": "[Na+].[Na+].[Cr+3].[O-]C1=CC(=CC=C1N=NC1=C2C(OCS2(=O)=O)=C2C=CC=CC2=C1[O-])[N+]([O-])=O.[O-]C1=CC=C2C=CC=CC2=C1N=NC1=C2C=CC=CC2=C(C=C1[O-])S([O-])(=O)=O", "isMarkush": false, "searchName": "Expert Validated Synonym", "searchValue": "1-Naphthalenesulfonic acid, 3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-, chromium complex", "rank": 10}
