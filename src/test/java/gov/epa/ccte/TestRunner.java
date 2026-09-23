@@ -9,7 +9,7 @@ class TestRunner {
 
     @Test // Standard JUnit 5 test annotation
     void testAll() {
-        Results results = Runner.path("classpath:gov/epa/ccte")
+        Results results = Runner.path("classpath:ccte-api")
                 .outputHtmlReport(true)
                 .parallel(5); // Adjust your thread count as needed
         
