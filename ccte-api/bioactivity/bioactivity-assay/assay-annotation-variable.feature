@@ -50,11 +50,11 @@ Feature: Feature file to validate responses of bioactivity assay annotation reso
     And match response[0] == {methodName: '#present', description: '#present', orderId: '#present', assayRunType: '#present', levelApplied: '#present'}
 
   Scenario: Validating the response of the GET method for assay data by aeid (projection = ccd-assay-reagents)
-    Given path '/bioactivity/assay/search/by-aeid/3032'
+    Given path '/bioactivity/assay/search/by-aeid/2'
     And param projection = 'ccd-assay-reagents'
     When method GET
     Then status 200
-    And match response == [{orderId: '#present', reagentType: '#present', reagentValue: '#present', cultureOrAssay: '#present'}]
+    And match each response == {orderId: '#present', reagentType: '#present', reagentValue: '#present', cultureOrAssay: '#present'}
 
   Scenario: Validating the response of the GET method for assay data by aeid (projection = ccd-assay-aop)
     Given path '/bioactivity/assay/search/by-aeid/711'

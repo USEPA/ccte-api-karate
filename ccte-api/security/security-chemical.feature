@@ -18,13 +18,13 @@ Feature: Feature file for security check on chemical microservice
     When method GET
     Then status 200
 
-  @envnot=ctx-local-dev
+  @envnot=dev
   Scenario: Request missing auth
     Given path '/chemical/detail/search/by-dtxsid/DTXSID7020182'
     When method GET
     Then status 401
 
-  @envnot=ctx-local-dev
+  @envnot=dev
   Scenario: Send wrong api key
     Given path '/chemical/detail/search/by-dtxsid/DTXSID7020182'
     And header x-api-key = fakekey

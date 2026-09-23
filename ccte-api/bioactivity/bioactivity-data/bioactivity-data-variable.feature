@@ -18,23 +18,40 @@ Feature: Feature file for validating responses of bioactivity data resource
   
   Scenario: Validating the response of the POST method for bioactivity data by batch dtxsid
     Given url ccte + "/bioactivity/data/search/by-dtxsid/"
-    And request ["DTXSID9026974","DTXSID9020112"]
+    And request ["DTXSID1058688","DTXSID5023873"]
     When method POST
     Then status 200
     And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
   
   Scenario: Validating the response of the GET method for bioactivity data by m4id 11847181
-    Given path '/bioactivity/data/search/by-m4id/11847181'
+    Given path '/bioactivity/data/search/by-dtxsid/DTXSID1058688'
+    When method GET
+    Then status 200
+
+    * def m4id = response[0].m4id
+
+    Given path '/bioactivity/data/search/by-m4id/', m4id
     When method GET
     Then status 200
     And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
   
   Scenario: Validating the response of the POST method for bioactivity data by batch m4id
-    Given url ccte + "/bioactivity/data/search/by-m4id/"
-    And request ["11847181","18737079"]
+    # part 1 - fetch assay data for two DTXSIDs
+    Given url ccte + "/bioactivity/data/search/by-dtxsid/"
+    And request ["DTXSID1058688","DTXSID5023873"]
     When method POST
     Then status 200
-    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+
+    # fetch their m4ids
+    * def m4ids = karate.map(response, r => r.m4id)
+
+    Given url ccte + "/bioactivity/data/search/by-m4id/"
+    And request m4ids
+    When method POST
+    Then status 200
+    And match response == "#array"
+    And assert karate.sizeOf(response) > 1
+    And match each response == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
   
   Scenario: Validating the response of the GET method for bioactivity data by aeid
     Given path '/bioactivity/data/search/by-aeid/3032'

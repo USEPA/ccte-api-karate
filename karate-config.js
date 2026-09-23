@@ -1,26 +1,20 @@
-function() {
+function fn() {
     var env = karate.env // get java system property from karate.env 'env'
     var key = karate.properties['key'] // get karate config property from karate.env 'key'
-    var fake = karate.properties['fake'] // get karate.config property from karate.env 'fake'
-    var localDev = karate.properties['localDev'].trim() // get karate.config property from karate.env 'localDev'
-    var localStg = karate.properties['localStg'].trim() // get karate.config property from karate.env 'localStg'
-    var hostDev = karate.properties['hostDev'].trim() // get karate.config property from karate.env 'localDev'
-    var hostStg = karate.properties['hostStg'].trim() // get karate.config property from karate.env 'localStg'
     karate.log('karate.env selected environment was:', env);
     
     if (!env) {
-    env = 'prod'; // env can be either ctx-local-dev or ctx-local-stg.
+      env = 'dev'; // env can be either dev or stg/staging.
     }
 
   // base config
   var config = {
 	env: env,
-    ccte: `https://api-ccte.epa.gov`,
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
-    fakekey: fake,
-    host: `api-ccte-.epa.gov`,
-        mol: `
+    batchdtxcid: `["DTXCID30182","DTXCID90112"]`,
+    fakekey: `00000000-0000-0000-0000-000000000000`,
+    mol: `
   Mrv1805 07292016252D          
 
   0  0  0     0  0            999 V3000
@@ -69,20 +63,28 @@ M  V30 END CTAB
 M  END
 `,
   }
-  // switch environment
-  if (env === 'ctx-local-dev')
-  {
-    config.ccte = localDev;
-    config.host = hostDev;
-  }
-  else if (env === 'ctx-local-stg')
-  {
-    config.ccte = localStg;
-    config.host = hostStg;
-    config.batchdtxsid = `["DTXSID00542076","DTXSID101199124"]`;
-  }
-    karate.configure('connectTimeout', 60000);
-    karate.configure('readTimeout', 60000);
 
-    return config;
+  // switch environment with sensible defaults
+  if (env === 'dev')
+  {
+    config.ccte = `https://ctx-api-dev.ccte.epa.gov`;
+    config.host = `ctx-api-dev.ccte.epa.gov`;
+  }
+  else if (env === 'stg' || env == 'staging')
+  {
+    config.ccte = `https://ctx-api-stg.ccte.epa.gov`;
+    config.host = `ctx-api-stg.ccte.epa.gov`;
+  } else if (env === 'main' || env === 'prod') {
+    config.ccte = `https://api-ccte.epa.gov`;
+    config.host = `api-ccte.epa.gov`;
+  }
+  
+  // allow overriding base URL and host via Karate properties
+  config.ccte = (karate.properties['baseUrl'] || config.ccte).trim();
+  config.host = (karate.properties['baseHost'] || config.host).trim();
+
+  karate.configure('connectTimeout', 60000);
+  karate.configure('readTimeout', 60000);
+
+  return config;
 }
