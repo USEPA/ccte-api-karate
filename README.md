@@ -33,6 +33,8 @@ Java 17 or newer is required. Maven does not need to be installed separately; th
 
 From the project directory, the default command runs the `@all` API suite against `dev`:
 
+Supported environments are `dev`, `stage`, and `prod`.
+
 ```powershell
 .\run-test.bat
 ```
@@ -56,13 +58,13 @@ To run a specific API's smoke tests, provide the environment and API tag:
 Direct Maven Wrapper commands are also supported:
 
 ```powershell
-.\mvnw.cmd test -Dkarate.env=dev -Dkarate.tags=@chemical,@smoke
+.\mvnw.cmd test "-Dkarate.env=dev" "-Dkarate.tags=@chemical,@smoke"
 ```
 
 To test a service deployed somewhere other than the standard `dev` environment, keep the desired environment selected and override the service URL and host with `baseUrl` and `baseHost`:
 
 ```powershell
-.\mvnw.cmd test -Dkarate.env=dev -Dkarate.tags=@chemical,@smoke -DbaseUrl=http://localhost:8080 -DbaseHost=localhost
+.\mvnw.cmd test "-Dkarate.env=dev" "-Dkarate.tags=@chemical,@smoke" "-DbaseUrl=http://localhost:8080" "-DbaseHost=localhost"
 ```
 
 The equivalent Linux command is:

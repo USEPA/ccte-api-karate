@@ -71,19 +71,13 @@ M  END
     config.ccte = `https://ctx-api-dev.ccte.epa.gov`;
     config.host = `ctx-api-dev.ccte.epa.gov`;
   }
-  else if (env === 'stg' || env === 'staging')
+  else if (env === 'stage')
   {
     config.ccte = `https://ctx-api-stg.ccte.epa.gov`;
     config.host = `ctx-api-stg.ccte.epa.gov`;
-  } else if (env === 'main' || env === 'prod') {
+  } else if (env === 'prod') {
     config.ccte = `https://api-ccte.epa.gov`;
     config.host = `api-ccte.epa.gov`;
-  } else if (env === 'ctx-local-dev' || env === 'local-dev') {
-    config.ccte = property('localDev', 'LOCAL_DEV_URL');
-    config.host = property('hostDev', 'LOCAL_DEV_HOST');
-  } else if (env === 'ctx-local-stg' || env === 'local-stg') {
-    config.ccte = property('localStg', 'LOCAL_STG_URL');
-    config.host = property('hostStg', 'LOCAL_STG_HOST');
   }
   
   // Explicit base overrides take precedence over environment-specific defaults.

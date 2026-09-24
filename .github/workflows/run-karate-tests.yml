@@ -16,9 +16,9 @@ on:
         default: 'dev'
         type: choice
         options:
+        - dev
+        - stage
         - prod
-        - ctx-local-dev
-        - ctx-local-stg
 
        api:
         description: 'API Selection'             
@@ -55,10 +55,6 @@ jobs:
       env:
         API_KEY: ${{ secrets.API_KEY }}
         FAKE_KEY: ${{ secrets.FAKE_KEY }}
-        LOCAL_DEV_URL: ${{ secrets.CLD }}
-        LOCAL_STG_URL: ${{ secrets.CLS }}
-        LOCAL_DEV_HOST: ${{ secrets.HD }}
-        LOCAL_STG_HOST: ${{ secrets.HS }}
       run: ./mvnw test -Dkarate.env=${{ inputs.env }} -Dkarate.tags=@${{ inputs.api == 'all' && 'all' || format('{0},smoke', inputs.api) }}
 
     - run: |
