@@ -1,11 +1,12 @@
 function fn() {
-    var env = karate.env // get java system property from karate.env 'env'
-    var key = karate.properties['key'] // get karate config property from karate.env 'key'
+    var properties = karate.properties;
+    var system = java.lang.System;
+    var property = function (name, environmentName) {
+      return properties[name] || (environmentName ? system.getenv(environmentName) : null);
+    };
+    var env = (karate.env || property('env', 'KARATE_ENV') || 'dev').trim().toLowerCase();
+    var key = property('key', 'API_KEY') || system.getenv('X_API_KEY');
     karate.log('karate.env selected environment was:', env);
-    
-    if (!env) {
-      env = 'dev'; // env can be either dev or stg/staging.
-    }
 
   // base config
   var config = {
@@ -13,7 +14,7 @@ function fn() {
     apikey: key,
     batchdtxsid: `["DTXSID7020182","DTXSID9020112"]`,
     batchdtxcid: `["DTXCID30182","DTXCID90112"]`,
-    fakekey: `00000000-0000-0000-0000-000000000000`,
+    fakekey: property('fake', 'FAKE_KEY') || `00000000-0000-0000-0000-000000000000`,
     mol: `
   Mrv1805 07292016252D          
 
@@ -70,18 +71,24 @@ M  END
     config.ccte = `https://ctx-api-dev.ccte.epa.gov`;
     config.host = `ctx-api-dev.ccte.epa.gov`;
   }
-  else if (env === 'stg' || env == 'staging')
+  else if (env === 'stg' || env === 'staging')
   {
     config.ccte = `https://ctx-api-stg.ccte.epa.gov`;
     config.host = `ctx-api-stg.ccte.epa.gov`;
   } else if (env === 'main' || env === 'prod') {
     config.ccte = `https://api-ccte.epa.gov`;
     config.host = `api-ccte.epa.gov`;
+  } else if (env === 'ctx-local-dev' || env === 'local-dev') {
+    config.ccte = property('localDev', 'LOCAL_DEV_URL');
+    config.host = property('hostDev', 'LOCAL_DEV_HOST');
+  } else if (env === 'ctx-local-stg' || env === 'local-stg') {
+    config.ccte = property('localStg', 'LOCAL_STG_URL');
+    config.host = property('hostStg', 'LOCAL_STG_HOST');
   }
   
-  // allow overriding base URL and host via Karate properties
-  config.ccte = (karate.properties['baseUrl'] || config.ccte).trim();
-  config.host = (karate.properties['baseHost'] || config.host).trim();
+  // Explicit base overrides take precedence over environment-specific defaults.
+  config.ccte = (property('baseUrl', 'BASE_URL') || config.ccte).trim();
+  config.host = (property('baseHost', 'BASE_HOST') || config.host).trim();
 
   karate.configure('connectTimeout', 60000);
   karate.configure('readTimeout', 60000);
