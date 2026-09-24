@@ -9,9 +9,13 @@ class TestRunner {
 
     @Test // Standard JUnit 5 test annotation
     void testAll() {
-        Results results = Runner.path("classpath:ccte-api")
-                .outputHtmlReport(true)
-                .parallel(5); // Adjust your thread count as needed
+        var runner = Runner.path("classpath:ccte-api")
+                .outputHtmlReport(true);
+        var tagExpression = System.getProperty("karate.tags");
+        if (tagExpression != null && !tagExpression.isBlank()) {
+            runner.tags(tagExpression.split(","));
+        }
+        Results results = runner.parallel(5); // Adjust your thread count as needed
         
         // This ensures the summary HTML is fully written to disk 
         // BEFORE the test framework throws a failure exception
