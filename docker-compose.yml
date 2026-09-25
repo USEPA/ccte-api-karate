@@ -1,0 +1,9 @@
+services:
+  ccte-api-karate:
+    build:
+      context: .
+      args:
+        APP_ENV: ${APP_ENV:-dev}
+    image: ccte-api-karate:local
+    ports:
+      - "${PORT:-8080}:80"

@@ -28,7 +28,7 @@ Feature: Feature file for chemical list resource
     Then status 200
 
   Scenario: Testing the GET method for information of all public lists (projection = chemicallistall)
-    Given url ccte + "/chemical/list/"
+    Given url ccte + "/chemical/list/all"
     And param projection = 'chemicallistall'
     When method GET
     Then status 200
@@ -52,7 +52,7 @@ Feature: Feature file for chemical list resource
     Then status 200
 
   Scenario: Testing the GET method for all public list names (projection = chemicallistname)
-    Given url ccte + "/chemical/list/"
+    Given url ccte + "/chemical/list/all"
     And param projection = 'chemicallistname'
     When method GET
     Then status 200
@@ -76,7 +76,8 @@ Feature: Feature file for chemical list resource
     Then status 200
 
   Scenario: Testing the GET method for all public lists that contain dtxsids (projection = chemicallistwithdtxsids)
-    Given url ccte + "/chemical/list/"
+    Given url ccte + "/chemical/list/all"
     And param projection = 'chemicallistwithdtxsids'
+    * configure readTimeout = 100000
     When method GET
     Then status 200

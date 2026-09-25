@@ -1,20 +1,18 @@
-FROM openjdk:11.0.12 AS build
+FROM eclipse-temurin:17-jdk AS build
 
 WORKDIR /app
 
 COPY . /app
 
-ARG APP_ENV
+ARG APP_ENV=dev
 
-# `|| true` so build doesn't fail when a test fails
-RUN for app in bioactivity chemical hazard; do \
-     sh /app/karate -e $APP_ENV --output result/$app ccte-api/$app || true; \
-  done
+RUN ./mvnw test \
+  "-Dkarate.env=$APP_ENV" \
+  "-Dkarate.tags=@all"
 
-FROM httpd:2.4.58
+FROM nginx:1.27.1-alpine
 
-COPY --from=build /app/result /usr/local/apache2/htdocs/result
-COPY --from=build /app/index.html /usr/local/apache2/htdocs/index.html
-COPY --from=build /app/httpd.conf /usr/local/apache2/conf/
+COPY --from=build /app/target/karate-reports/ /usr/share/nginx/html/
+COPY --from=build /app/target/karate-reports/karate-summary.html /usr/share/nginx/html/index.html
 
 EXPOSE 80

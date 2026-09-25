@@ -13,16 +13,16 @@ on:
        env:
         description: 'Environment'
         required: false
-        default: 'prod'
+        default: 'dev'
         type: choice
         options:
+        - dev
+        - stage
         - prod
-        - ctx-local-dev
-        - ctx-local-stg
 
        api:
         description: 'API Selection'             
-        required: true
+        required: false
         default: 'all'
         type: choice
         options:
@@ -50,41 +50,26 @@ jobs:
       with:
         java-version: '21.0.8'
         distribution: 'temurin'
-        
-    - name: Run Karate with Java
-      run: java -Dkey=${{secrets.API_KEY}} -Dfake=${{secrets.FAKE_KEY}} -DlocalDev=${{secrets.CLD}} -DlocalStg=${{secrets.CLS}} -DhostDev=${{secrets.HD}} -DhostStg=${{secrets.HS}} -jar karate-1.4.1.jar -t @${{ inputs.api }} -t @smoke -e ${{ inputs.env }} ccte-api -o ccte-api/target/
+
+    - name: Run Karate with Maven
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        FAKE_KEY: ${{ secrets.FAKE_KEY }}
+      run: ./mvnw test -Dkarate.env=${{ inputs.env }} -Dkarate.tags=@${{ inputs.api == 'all' && 'all' || format('{0},smoke', inputs.api) }}
+
     - run: |
            echo 'This Job is running in ${{ inputs.api }} API on the ${{ inputs.env }} environment.' >> $GITHUB_STEP_SUMMARY
-           pass=$(scenariospassed ctx-api/target/karate-reports/karate-summary-json.txt)
-           fail=$(scenariosfailed ctx-api/target/karate-reports/karate-summary-json.txt)
-           echo 'Scenarios Passed: ${pass}📗' >> $GITHUB_STEP_SUMMARY
-           echo 'Scenarios Failed: ${fail}📕' >> $GITHUB_STEP_SUMMARY
-  result:
-    runs-on: th878
-    strategy:
-      fail-fast: false
-    needs: build
-    steps:
-    - name: Get current date
-      id: date
-      run: echo "date=$(TZ=":EST" date +'%Y-%m-%d %H.%MEST')" >>$GITHUB_OUTPUT
-        
-    - name: Upload a Build Artifact
+    - name: Upload test reports
       uses: actions/upload-artifact@v4.3.1      
       if: ${{ always() }}
       with:
-    # Artifact name
-        name: ${{ inputs.api }} Smoke Result ${{ steps.date.outputs.date }}
-    # A file, directory or wildcard pattern that describes what to upload
+        name: ${{ inputs.api }} Smoke Result
         path: | 
-         ccte-api/target/karate-reports/karate-summary-json.txt
-         ccte-api/target/karate-reports/res
-         ccte-api/target/karate-reports/karate-summary.html
-         ccte-api/target/karate-reports/karate-labs-logo-ring.svg
+         target/karate-reports
 
   clean-up:
    runs-on: th878
-   needs: result
+   needs: build
    steps:
     - name: 'Cleanup build folder'
       run: |
