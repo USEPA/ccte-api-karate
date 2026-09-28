@@ -5,10 +5,12 @@ WORKDIR /app
 COPY . /app
 
 ARG APP_ENV=dev
+ARG BASE_URL=
 
 RUN ./mvnw test \
   "-Dkarate.env=$APP_ENV" \
-  "-Dkarate.tags=@all"
+  "-Dkarate.tags=@all" \
+  "-DbaseUrl=$BASE_URL"
 
 FROM registry1.dso.mil/ironbank/opensource/nginx/nginx-alpine:1.31.6
 

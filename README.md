@@ -61,19 +61,19 @@ Direct Maven Wrapper commands are also supported:
 .\mvnw.cmd test "-Dkarate.env=dev" "-Dkarate.tags=@chemical,@smoke"
 ```
 
-To test a service deployed somewhere other than the standard `dev` environment, keep the desired environment selected and override the service URL and host with `baseUrl` and `baseHost`:
+To test a service deployed somewhere other than the standard `dev` environment, keep the desired environment selected and override the service URL with `baseUrl`:
 
 ```powershell
-.\mvnw.cmd test "-Dkarate.env=dev" "-Dkarate.tags=@chemical,@smoke" "-DbaseUrl=http://localhost:8080" "-DbaseHost=localhost"
+\.\mvnw.cmd test "-Dkarate.env=dev" "-Dkarate.tags=@chemical,@smoke" "-DbaseUrl=http://localhost:8080"
 ```
 
 The equivalent Linux command is:
 
 ```sh
-./mvnw test -Dkarate.env=dev -Dkarate.tags=@chemical,@smoke -DbaseUrl=http://localhost:8080 -DbaseHost=localhost
+./mvnw test -Dkarate.env=dev -Dkarate.tags=@chemical,@smoke -DbaseUrl=http://localhost:8080
 ```
 
-`baseUrl` is the complete service URL, including protocol and port when needed. `baseHost` is the hostname used for host-based checks. These overrides take precedence over the environment defaults.
+`baseUrl` is the complete service URL, including protocol and port when needed. This override takes precedence over the environment defaults.
 
 Reports are written to `target/karate-reports`.
 
@@ -93,11 +93,20 @@ To use a different environment or host port:
 APP_ENV=stage PORT=9090 docker compose up --build
 ```
 
+To run the suite against a service deployed outside the configured environments, provide its URL as a Compose build argument:
+
+```sh
+BASE_URL=https://api.example.gov docker compose up --build
+```
+
+The URL override takes precedence over the selected `APP_ENV` default. The value is used while the image is built, so use `--build` whenever it changes.
+
 On PowerShell, set the variables before starting Compose:
 
 ```powershell
 $env:APP_ENV = "stage"
 $env:PORT = "9090"
+$env:BASE_URL = "https://api.example.gov"
 docker compose up --build
 ```
 

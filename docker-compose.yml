@@ -4,6 +4,7 @@ services:
       context: .
       args:
         APP_ENV: ${APP_ENV:-dev}
+        BASE_URL: ${BASE_URL:-}
     image: ccte-api-karate:local
     ports:
       - "${PORT:-8080}:8080"

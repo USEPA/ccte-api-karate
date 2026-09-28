@@ -69,20 +69,16 @@ M  END
   if (env === 'dev')
   {
     config.ccte = `https://ctx-api-dev.ccte.epa.gov`;
-    config.host = `ctx-api-dev.ccte.epa.gov`;
   }
   else if (env === 'stage')
   {
     config.ccte = `https://ctx-api-stg.ccte.epa.gov`;
-    config.host = `ctx-api-stg.ccte.epa.gov`;
   } else if (env === 'prod') {
     config.ccte = `https://api-ccte.epa.gov`;
-    config.host = `api-ccte.epa.gov`;
   }
   
   // Explicit base overrides take precedence over environment-specific defaults.
   config.ccte = (property('baseUrl', 'BASE_URL') || config.ccte).trim();
-  config.host = (property('baseHost', 'BASE_HOST') || config.host).trim();
 
   karate.configure('connectTimeout', 60000);
   karate.configure('readTimeout', 60000);
