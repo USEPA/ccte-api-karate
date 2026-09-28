@@ -10,9 +10,10 @@ RUN ./mvnw test \
   "-Dkarate.env=$APP_ENV" \
   "-Dkarate.tags=@all"
 
-FROM nginx:1.27.1-alpine
+FROM registry1.dso.mil/ironbank/opensource/nginx/nginx-alpine:1.31.6
 
-COPY --from=build /app/target/karate-reports/ /usr/share/nginx/html/
-COPY --from=build /app/target/karate-reports/karate-summary.html /usr/share/nginx/html/index.html
+# switch to nginx user for security reasons
+COPY --chown=1001:1001 --from=build /app/target/karate-reports/ /etc/nginx/html/
+COPY --chown=1001:1001 --from=build /app/target/karate-reports/karate-summary.html /etc/nginx/html/index.html
 
-EXPOSE 80
+EXPOSE 8080

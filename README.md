@@ -77,6 +77,30 @@ The equivalent Linux command is:
 
 Reports are written to `target/karate-reports`.
 
+## Running with Docker Compose
+
+Docker Compose builds the image, runs the `@all` suite, and serves the generated Karate reports with Nginx. The summary report is the default page.
+
+```sh
+docker compose up --build
+```
+
+Open `http://localhost:8080` to view the report summary. Individual feature result pages and report assets are also available from the same site.
+
+To use a different environment or host port:
+
+```sh
+APP_ENV=stage PORT=9090 docker compose up --build
+```
+
+On PowerShell, set the variables before starting Compose:
+
+```powershell
+$env:APP_ENV = "stage"
+$env:PORT = "9090"
+docker compose up --build
+```
+
 ## Running Tests in GitHub Actions
 
 1. Open the **Actions** tab in the `ccte-api-karate` repository.

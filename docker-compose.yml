@@ -6,4 +6,4 @@ services:
         APP_ENV: ${APP_ENV:-dev}
     image: ccte-api-karate:local
     ports:
-      - "${PORT:-8080}:80"
+      - "${PORT:-8080}:8080"
