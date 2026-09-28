@@ -64,7 +64,7 @@ Direct Maven Wrapper commands are also supported:
 To test a service deployed somewhere other than the standard `dev` environment, keep the desired environment selected and override the service URL with `baseUrl`:
 
 ```powershell
-\.\mvnw.cmd test "-Dkarate.env=dev" "-Dkarate.tags=@chemical,@smoke" "-DbaseUrl=http://localhost:8080"
+.\mvnw.cmd test "-Dkarate.env=dev" "-Dkarate.tags=@chemical,@smoke" "-DbaseUrl=http://localhost:8080"
 ```
 
 The equivalent Linux command is:
@@ -87,6 +87,14 @@ docker compose up --build
 
 Open `http://localhost:8080` to view the report summary. Individual feature result pages and report assets are also available from the same site.
 
+By default, Compose runs the `@all` suite. To run only one API's tagged tests, set `KARATE_TAGS` and rebuild the image. The tag selects features carrying that tag; it does not automatically include features that only carry `@all`:
+
+```sh
+KARATE_TAGS=@chemical docker compose up --build
+```
+
+Other API tag examples include `@bioactivity`, `@exposure`, and `@hazard`.
+
 To use a different environment or host port:
 
 ```sh
@@ -107,6 +115,7 @@ On PowerShell, set the variables before starting Compose:
 $env:APP_ENV = "stage"
 $env:PORT = "9090"
 $env:BASE_URL = "https://api.example.gov"
+$env:KARATE_TAGS = "@chemical"
 docker compose up --build
 ```
 

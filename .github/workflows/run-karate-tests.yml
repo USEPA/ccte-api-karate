@@ -1,7 +1,7 @@
 # This workflow will build a Karate project with Java
 
 # This workflow is set to dispatch based on user input from a drop-down menu.
-# Environment defaults to 'prod' and requires no selection. Test requires the choice of a tag before the run can begin.
+# Environment defaults to 'dev'. API selection defaults to the @all suite.
 # The fail-fast setting has been disabled to ensure that the entire test is allowed to complete in the presence of failures.
 # This will allow actions to upload an Artifact for viewing regardless of results. Artifacts are labeled Date/Time
 

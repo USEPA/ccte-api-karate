@@ -6,10 +6,11 @@ COPY . /app
 
 ARG APP_ENV=dev
 ARG BASE_URL=
+ARG KARATE_TAGS=@all
 
 RUN ./mvnw test \
   "-Dkarate.env=$APP_ENV" \
-  "-Dkarate.tags=@all" \
+  "-Dkarate.tags=$KARATE_TAGS" \
   "-DbaseUrl=$BASE_URL"
 
 FROM registry1.dso.mil/ironbank/opensource/nginx/nginx-alpine:1.31.6
