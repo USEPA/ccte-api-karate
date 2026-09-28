@@ -8,7 +8,8 @@ ARG APP_ENV=dev
 ARG BASE_URL=
 ARG KARATE_TAGS=@all
 
-RUN ./mvnw test \
+RUN --mount=type=cache,target=/root/.m2/repository \
+  ./mvnw test \
   "-Dkarate.env=$APP_ENV" \
   "-Dkarate.tags=$KARATE_TAGS" \
   "-DbaseUrl=$BASE_URL"
