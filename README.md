@@ -77,50 +77,6 @@ The equivalent Linux command is:
 
 Reports are written to `target/karate-reports`.
 
-## Running with Docker Compose
-
-Docker Compose builds the image, runs the `@all` suite, and serves the generated Karate reports with Nginx. The summary report is the default page. If test scenarios fail after Karate generates the summary, the image still builds so the failed report can be served. Other failures, such as Maven startup, dependency, compilation, or report-generation failures, fail the image build.
-
-When the tests need to call a service running on the Docker host, use `http://host.docker.internal:<port>` in `BASE_URL`. Using `localhost` inside the test container points back to the test container, not the host. To call another container in the same Compose application, put both services on a shared Compose network and use the target service name and container port instead, such as `http://api:8080`.
-
-```sh
-docker compose up --build
-```
-
-Open `http://localhost:8080` to view the report summary. Individual feature result pages and report assets are also available from the same site.
-
-By default, Compose runs the `@all` suite. To run only one API's tagged tests, set `KARATE_TAGS` and rebuild the image. The tag selects features carrying that tag; it does not automatically include features that only carry `@all`:
-
-```sh
-KARATE_TAGS=@chemical docker compose up --build
-```
-
-Other API tag examples include `@bioactivity`, `@exposure`, and `@hazard`.
-
-To use a different environment or host port:
-
-```sh
-APP_ENV=stage PORT=9090 docker compose up --build
-```
-
-To run the suite against a service deployed outside the configured environments, provide its URL as a Compose build argument:
-
-```sh
-BASE_URL=https://api.example.gov docker compose up --build
-```
-
-The URL override takes precedence over the selected `APP_ENV` default. The value is used while the image is built, so use `--build` whenever it changes.
-
-On PowerShell, set the variables before starting Compose:
-
-```powershell
-$env:APP_ENV = "stage"
-$env:PORT = "9090"
-$env:BASE_URL = "https://api.example.gov"
-$env:KARATE_TAGS = "@chemical"
-docker compose up --build
-```
-
 ## Running Tests in GitHub Actions
 
 1. Open the **Actions** tab in the `ccte-api-karate` repository.
