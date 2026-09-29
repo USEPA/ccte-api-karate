@@ -79,7 +79,9 @@ Reports are written to `target/karate-reports`.
 
 ## Running with Docker Compose
 
-Docker Compose builds the image, runs the `@all` suite, and serves the generated Karate reports with Nginx. The summary report is the default page.
+Docker Compose builds the image, runs the `@all` suite, and serves the generated Karate reports with Nginx. The summary report is the default page. If test scenarios fail after Karate generates the summary, the image still builds so the failed report can be served. Other failures, such as Maven startup, dependency, compilation, or report-generation failures, fail the image build.
+
+When the tests need to call a service running on the Docker host, use `http://host.docker.internal:<port>` in `BASE_URL`. Using `localhost` inside the test container points back to the test container, not the host. To call another container in the same Compose application, put both services on a shared Compose network and use the target service name and container port instead, such as `http://api:8080`.
 
 ```sh
 docker compose up --build
