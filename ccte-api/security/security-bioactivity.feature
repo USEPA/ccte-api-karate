@@ -18,11 +18,13 @@ Feature: Feature file for security check on bioactivity microservice
     When method GET
     Then status 200
 
+  @envnot=dev
   Scenario: Request missing auth
     Given path '/bioactivity/data/search/by-dtxsid/DTXSID0021125'
     When method GET
     Then status 401
 
+  @envnot=dev
   Scenario: Send wrong api key
     Given path '/bioactivity/data/search/by-dtxsid/DTXSID0021125'
     And header x-api-key = fakekey

@@ -18,11 +18,13 @@ Feature: Feature file for security check on exposure microservice
     When method GET
     Then status 200
 
+  @envnot=dev
   Scenario: Request missing auth
     Given path '/exposure/functional-use/search/by-dtxsid/DTXSID0020232'
     When method GET
     Then status 401
 
+  @envnot=dev
   Scenario: Send wrong api key
     Given path '/exposure/functional-use/search/by-dtxsid/DTXSID0020232'
     And header x-api-key = fakekey

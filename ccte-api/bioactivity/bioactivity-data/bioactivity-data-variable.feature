@@ -1,0 +1,114 @@
+@regression
+@contracts
+@bioactivity
+@all
+Feature: Feature file for validating responses of bioactivity data resource
+
+  Background:
+    * url ccte
+    * header Accept = 'application/json' 
+    * header Content-Type = 'application/json; charset=utf-8'
+    * header x-api-key = apikey
+
+  Scenario: Validating the response of the GET method for bioactivity data by dtxsid
+    Given path '/bioactivity/data/search/by-dtxsid/DTXSID9026974'
+    When method GET
+    Then status 200
+    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the POST method for bioactivity data by batch dtxsid
+    Given url ccte + "/bioactivity/data/search/by-dtxsid/"
+    And request ["DTXSID1058688","DTXSID5023873"]
+    When method POST
+    Then status 200
+    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the GET method for bioactivity data by m4id 11847181
+    Given path '/bioactivity/data/search/by-dtxsid/DTXSID1058688'
+    When method GET
+    Then status 200
+
+    * def m4id = response[0].m4id
+
+    Given path '/bioactivity/data/search/by-m4id/', m4id
+    When method GET
+    Then status 200
+    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the POST method for bioactivity data by batch m4id
+    # part 1 - fetch assay data for two DTXSIDs
+    Given url ccte + "/bioactivity/data/search/by-dtxsid/"
+    And request ["DTXSID1058688","DTXSID5023873"]
+    When method POST
+    Then status 200
+
+    # fetch their m4ids
+    * def m4ids = karate.map(response, r => r.m4id)
+
+    Given url ccte + "/bioactivity/data/search/by-m4id/"
+    And request m4ids
+    When method POST
+    Then status 200
+    And match response == "#array"
+    And assert karate.sizeOf(response) > 1
+    And match each response == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the GET method for bioactivity data by aeid
+    Given path '/bioactivity/data/search/by-aeid/3032'
+    When method GET
+    Then status 200
+    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the POST method for bioactivity data by batch aeid
+    Given url ccte + "/bioactivity/data/search/by-aeid/"
+    And request ["3032","755"]
+    When method POST
+    Then status 200
+    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the GET method for bioactivity data by spid
+    Given path '/bioactivity/data/search/by-spid/EPAPLT0232A03'
+    When method GET
+    Then status 200
+    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the POST method for bioactivity data by batch spid
+    Given url ccte + "/bioactivity/data/search/by-spid/"
+    And request ["EPAPLT0232A03","TP0000311A04"]
+    When method POST
+    Then status 200
+    And match response[0] == {concMin: '#present', aeid: '#present', dtxsid: '#present', chnm: '#present', spid: '#present', m4id: '#present', chid: '#present', casn: '#present', bmad: '#present', respMax: '#present', respMin: '#present', maxMean: '#present', maxMeanConc: '#present', maxMed: '#present', maxMedConc: '#present', concMax: '#present', nconc: '#present', npts: '#present', nrep: '#present', nmedGtblPos: '#present', nmedGtblNeg: '#present', m5id: '#present', modl: '#present', hitc: '#present', fitc: '#present', coff: '#present', actp: '#present', modelType: '#present', chidRep: '#present', stkc: '#present', stkcUnit: '#present', testedConcUnit: '#present', mc3Param: '#present', mc4Param: '#present', mc5Param: '#present', mc6Param: '#present'}
+  
+  Scenario: Validating the response of the GET method for bioactivity data by dtxsid AND tissue
+    Given url ccte + "/bioactivity/data/summary/search/by-tissue/"
+    And param dtxsid = 'DTXSID7024241'
+    And param tissue = 'liver'
+    When method GET
+    Then status 200
+    And match response[0] == {dtxsid: '#present', intendedTargetFamily: '#present', tissue: '#present', maxMedConc: '#present', continuousHitCall: '#present', chemicalName: '#present', hitCall: '#present', ac50: '#present', logAC50: '#present', cutOff: '#present', acc: '#present'}
+
+  Scenario: Validating the response of the GET method for bioactivity data summary by aeid
+    Given path '/bioactivity/data/summary/search/by-aeid/3032'
+    When method GET
+    Then status 200
+    And match response[0] == {aeid: '#present', activeMc: '#present', totalMc: '#present', activeSc: '#present', totalSc: '#present'}
+
+  Scenario: Validating the response of the GET method for bioactivity aed data  by dtxsid
+    Given path '/bioactivity/data/aed/search/by-dtxsid/DTXSID5021209'
+    When method GET
+    Then status 200
+    And match response[0] ==   {dtxsid: '#present', preferredName: '#present', aeid: '#present', aenm: '#present', aedVal: '#present', aedType: '#present', httkModel: '#present', aedValUnit: '#present', httkVersion: '#present', potencyValType: '#present', invitrodbVersion: '#present', interindividualVarPerc: '#present'}
+
+  Scenario: Validating the response of the POST method for bioactivity aed data by batch dtxsid
+    Given url ccte + "/bioactivity/data/aed/search/by-dtxsid/"
+    And request ["DTXSID7020182","DTXSID9020112"]
+    When method POST
+    Then status 200
+    And match response[0] ==   {dtxsid: '#present', preferredName: '#present', aeid: '#present', aenm: '#present', aedVal: '#present', aedType: '#present', httkModel: '#present', aedValUnit: '#present', httkVersion: '#present', potencyValType: '#present', invitrodbVersion: '#present', interindividualVarPerc: '#present'}
+    
+  Scenario: Validating the response of the GET method for bioactivity data summary by dtxsid
+    Given path '/bioactivity/data/summary/search/by-dtxsid/DTXSID9026974'
+    When method GET
+    Then status 200
+    And match response[0] == {dtxsid: '#present', activeMc: '#present', totalMc: '#present', activeSc: '#present', totalSc: '#present', cytotoxMedianRaw: '#present', cytotoxMad: '#present', globalMad: '#present', cytotoxMedianLog: '#present', cytotoxMedianUm: '#present', cytotoxLowerUm: '#present', cytotoxLowerLog: '#present', ntested:  '#present', nhit: '#present'}
+    

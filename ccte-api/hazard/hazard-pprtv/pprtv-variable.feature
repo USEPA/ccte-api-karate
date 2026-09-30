@@ -13,4 +13,4 @@ Feature: Feature file for validating the response of the PPRTV chemical endpoint
     Given path '/hazard/pprtv/search/by-dtxsid/DTXSID0023872'
     When method GET
     Then status 200
-    And match response[0] == {id: '#present', dtxsid: '#present', pprtvSubstanceId: '#present', name: '#present', casrn: '#present', lastReviosn: '#present', pprtvAssessment: '#present', irisLink: '#present', rfcValue: '#present', rfdValue: '#present', woe: '#present'}
+    And match response[0] == {id: '#present', dtxsid: '#present', pprtvSubstanceId: '#present', name: '#present', casrn: '#present', lastRevision: '#present', pprtvAssessment: '#present', irisLink: '#present', rfcValue: '#present', rfdValue: '#present', woe: '#present'}

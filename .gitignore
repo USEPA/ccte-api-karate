@@ -1,2 +1,8 @@
 target/
 karate-config.js
+
+# vscode
+.vscode
+
+.settings
+.project

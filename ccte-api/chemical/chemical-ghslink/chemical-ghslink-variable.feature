@@ -21,4 +21,4 @@ Feature: Feature file for validating the response of the chemical ghslink resour
     And request batchdtxsid
     When method POST
     Then status 200
-    And match response == {dtxsid: '#present', isSafetyData: '#present', safetyUrl: '#present'}
+    And match response == [{dtxsid: '#present', isSafetyData: '#present', safetyUrl: '#present'}, {dtxsid: '#present', isSafetyData: '#present', safetyUrl: '#present'}]

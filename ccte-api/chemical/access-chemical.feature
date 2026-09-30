@@ -1,5 +1,6 @@
 @smoke
 @html
+@chemical
 Feature: Feature file to access chemical api
 
   Scenario: Testing the GET method for chemical api html page

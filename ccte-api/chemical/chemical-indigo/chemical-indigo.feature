@@ -1,6 +1,8 @@
 @smoke
 @chemical
 @all
+# the /chemical/indigo endpoints were recently removed for performance reasons (huge cache)
+@ignore
 Feature: Feature file for chemical info from Indigo toolkit
 
   Background:

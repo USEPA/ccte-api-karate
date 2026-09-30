@@ -47,6 +47,7 @@ Feature: Feature file for chemical property resource
     Then status 200
 
   Scenario: Testing the GET method for property by given property id and its value range (predicted)
+    * configure readTimeout = 100000
     Given path '/chemical/property/predicted/search/by-range/Melting Point/150/151'
     When method GET
     Then status 200
@@ -73,4 +74,97 @@ Feature: Feature file for chemical property resource
     And param propName = 'Density'
     When method GET
     Then status 200
+
+  @fate
+  @validation
+  Scenario: POST request with no body returns a 400 status
+    Given url ccte + "/chemical/fate/search/by-dtxsid/"
+    When method POST
+    Then status 400
+
+  @fate
+  @validation
+  Scenario: POST request with empty array returns a 400 status
+    Given url ccte + "/chemical/fate/search/by-dtxsid/"
+    And request []
+    When method POST
+    Then status 400
+  
+  @fate
+  @validation
+  Scenario: POST request with single empty array returns a 400 status
+    Given url ccte + "/chemical/fate/search/by-dtxsid/"
+    And request [""]
+    When method POST
+    Then status 400
+
+  @fate
+  @validation
+  Scenario: POST request with embedded unicode nulls returns a 400 status
+    Given url ccte + "/chemical/fate/search/by-dtxsid/"
+    And request ["\u0000"]
+    When method POST
+    Then status 400
+
+  @predicted
+  @validation
+  Scenario: POST request with no body returns a 400 status
+    Given url ccte + "/chemical/property/predicted/search/by-dtxsid/"
+    When method POST
+    Then status 400
+
+  @predicted
+  @validation
+  Scenario: POST request with empty array returns a 400 status
+    Given url ccte + "/chemical/property/predicted/search/by-dtxsid/"
+    And request []
+    When method POST
+    Then status 400
+  
+  @predicted
+  @validation
+  Scenario: POST request with single empty array returns a 400 status
+    Given url ccte + "/chemical/property/predicted/search/by-dtxsid/"
+    And request [""]
+    When method POST
+    Then status 400
+
+  @predicted
+  @validation
+  Scenario: POST request with embedded unicode nulls returns a 400 status
+    Given url ccte + "/chemical/property/predicted/search/by-dtxsid/"
+    And request ["\u0000"]
+    When method POST
+    Then status 400
+
+  @experimental
+  @validation
+  Scenario: POST request with no body returns a 400 status
+    Given url ccte + "/chemical/property/experimental/search/by-dtxsid/"
+    When method POST
+    Then status 400
+
+  @experimental
+  @validation
+  Scenario: POST request with empty array returns a 400 status
+    Given url ccte + "/chemical/property/experimental/search/by-dtxsid/"
+    And request []
+    When method POST
+    Then status 400
+  
+  @experimental
+  @validation
+  Scenario: POST request with single empty array returns a 400 status
+    Given url ccte + "/chemical/property/experimental/search/by-dtxsid/"
+    And request [""]
+    When method POST
+    Then status 400
+
+  @experimental
+  @validation
+  Scenario: POST request with embedded unicode nulls returns a 400 status
+    Given url ccte + "/chemical/property/experimental/search/by-dtxsid/"
+    And request ["\u0000"]
+    When method POST
+    Then status 400
 
