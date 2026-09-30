@@ -8,10 +8,19 @@
         </encoder>
     </appender>
 
+    <!-- File Appender -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>target/karate.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <!-- Keep Karate internal engine logging at DEBUG so it captures data for reports -->
-    <logger name="com.intuit.karate" level="DEBUG"/>
-    <logger name="io.karatelabs" level="DEBUG"/>
-    <logger name="karate" level="DEBUG"/>
+    <logger name="com.intuit.karate" level="DEBUG" additivity="false"/>
+    <logger name="io.karatelabs" level="DEBUG" additivity="false"/>
+    <logger name="karate" level="DEBUG" additivity="false"/>
+
     
     <!-- Mute noisy third-party frameworks -->
     <logger name="org.thymeleaf" level="ERROR"/>
@@ -19,7 +28,7 @@
     <logger name="org.apache" level="WARN"/>
 
     <!-- CRITICAL: Set root console logging to INFO or WARN to clean up terminal noise -->
-    <root level="INFO">
+    <root level="WARN">
         <appender-ref ref="STDOUT" />
     </root>
 
