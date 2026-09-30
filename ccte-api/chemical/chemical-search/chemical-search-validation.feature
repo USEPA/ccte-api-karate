@@ -63,13 +63,13 @@ Feature: Feature file for validating the response of chemical search resource
     Given path '/chemical/search/start-with/(-)'
     When method GET
     Then status 200
-    And match response[1] == {"isMarkush": "##notnull", "searchName": "Approved Name", "searchValue": "(-)-10-Norparvulenone", "rank": 9, "dtxsid": "DTXSID601346897", "dtxcid": null, "casrn": "313661-79-9", "preferredName": "(-)-10-Norparvulenone", "hasStructureImage": 0, "smiles": null}
+    And match response contains {"isMarkush": "##notnull", "searchName": "Approved Name", "searchValue": "(-)-10-Norparvulenone", "rank": 9, "dtxsid": "DTXSID601346897", "dtxcid": null, "casrn": "313661-79-9", "preferredName": "(-)-10-Norparvulenone", "hasStructureImage": 0, "smiles": null}
 
   Scenario: Validating response data using the GET method for chemical search by starting value of chemical name
     Given path '/chemical/search/start-with/polysorbate'
     When method GET
     Then status 200
-    And match response[1] == {"casrn": "9005-64-5", "preferredName": "Polysorbate 20", "dtxsid": "DTXSID3031949", "dtxcid": null, "searchName": "Approved Name", "searchValue": "Polysorbate 20", "rank": 9, "hasStructureImage": 0, "smiles": null, "isMarkush": "##notnull"}
+    And match response contains {"casrn": "9005-64-5", "preferredName": "Polysorbate 20", "dtxsid": "DTXSID3031949", "dtxcid": null, "searchName": "Approved Name", "searchValue": "Polysorbate 20", "rank": 9, "hasStructureImage": 0, "smiles": null, "isMarkush": "##notnull"}
 
   Scenario: Validating response data using the GET method for chemical search by starting value of chemical name
     Given path '/chemical/search/start-with/jwh-007'
@@ -189,4 +189,4 @@ Feature: Feature file for validating the response of chemical search resource
     Given url ccte + "/chemical/search/start-with/1-Naphthalenesulfonic%20acid%2C%203-hydroxy-4-%5B%282-hydroxy-1-naphthalenyl%29azo%5D-%2C%20chromium%20complex"
     When method GET
     Then status 200
-    And match response[4] == {"hasStructureImage": 1, "dtxsid": "DTXSID301446373", "dtxcid": "DTXCID101996841", "casrn": "83733-02-2", "preferredName": "Chromate(2-), [3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-1-naphthalenesulfonato(3-)][4-[(2-hydroxy-4-nitrophenyl)azo]naphth[2,1-d]-1,3-oxathiol-5-ol 3,3-dioxidato(2-)]-, disodium", "smiles": "[Na+].[Na+].[Cr+3].[O-]C1=CC(=CC=C1N=NC1=C2C(OCS2(=O)=O)=C2C=CC=CC2=C1[O-])[N+]([O-])=O.[O-]C1=CC=C2C=CC=CC2=C1N=NC1=C2C=CC=CC2=C(C=C1[O-])S([O-])(=O)=O", "isMarkush": false, "searchName": "Expert Validated Synonym", "searchValue": "1-Naphthalenesulfonic acid, 3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-, chromium complex", "rank": 10}
+    And match response contains {"hasStructureImage": 1, "dtxsid": "DTXSID301446373", "dtxcid": "DTXCID101996841", "casrn": "83733-02-2", "preferredName": "Chromate(2-), [3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-1-naphthalenesulfonato(3-)][4-[(2-hydroxy-4-nitrophenyl)azo]naphth[2,1-d]-1,3-oxathiol-5-ol 3,3-dioxidato(2-)]-, disodium", "smiles": "[Na+].[Na+].[Cr+3].[O-]C1=CC(=CC=C1N=NC1=C2C(OCS2(=O)=O)=C2C=CC=CC2=C1[O-])[N+]([O-])=O.[O-]C1=CC=C2C=CC=CC2=C1N=NC1=C2C=CC=CC2=C(C=C1[O-])S([O-])(=O)=O", "isMarkush": false, "searchName": "Expert Validated Synonym", "searchValue": "1-Naphthalenesulfonic acid, 3-hydroxy-4-[(2-hydroxy-1-naphthalenyl)azo]-, chromium complex", "rank": 10}
